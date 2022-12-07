@@ -6,6 +6,11 @@ import EditCategory from "../views/Category/EditCategory";
 import AddProduct from "../views/Product/AddProduct";
 import Product from "../views/Product/Product";
 
+import Signup from "../views/Signup";
+import Signin from "../views/Signin";
+
+
+
 const routes = [
   {
     path: "/",
@@ -36,7 +41,17 @@ const routes = [
     path: "/admin/product",
     name: "AdminProduct",
     component: Product,
-  }
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup
+  },
+  {
+    path: '/signin',
+    name: 'Signin',
+    component: Signin
+  },
 ];
 
 const router = createRouter({
