@@ -47,10 +47,10 @@ export default {
       const newCategory = {
         categoryName : this.categoryName,
         description : this.description,
-        imageUrl : this.imageURL,
+        //imageUrl : this.imageURL,
       };
 
-      const baseURL =  "https://limitless-lake-55070.herokuapp.com/";
+      const baseURL =  "//localhost:8080/";
 
       await axios({
         method: 'post',

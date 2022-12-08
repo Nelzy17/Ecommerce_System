@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Wed Dec 07 19:41:10 EST 2022:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0184-ef2d-d8c9-000005e144a8 
+Wed Dec 07 21:12:25 EST 2022:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0184-ef81-6360-000007b8d2c0 
 on database directory /Users/ketanbhandari/Desktop/EECS4413_Ecommerce/Ecommerce_System/mydbdirectory with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@55054057 
 Loaded from file:/Users/ketanbhandari/.m2/repository/org/apache/derby/derby/10.14.2.0/derby-10.14.2.0.jar
 java.vendor=Oracle Corporation

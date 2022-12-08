@@ -25,7 +25,7 @@ const axios = require('axios');
 export default {
   data() {
     return {
-      baseURL : "https://limitless-lake-55070.herokuapp.com/",
+      baseURL : "//localhost:8080/",
       products : null,
       categories : null
     }
