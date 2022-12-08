@@ -8,4 +8,5 @@ import com.ecommerce.Ecommerce_System.model.UserModel;
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Integer> {
 
+	UserModel findByEmail(String email);
 }
