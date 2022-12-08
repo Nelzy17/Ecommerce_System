@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.Ecommerce_System.config.ApiResponse;
 import com.ecommerce.Ecommerce_System.dto.product.ProductDto;
+import com.ecommerce.Ecommerce_System.model.BrandModel;
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
+import com.ecommerce.Ecommerce_System.service.BrandService;
 import com.ecommerce.Ecommerce_System.service.CategoryService;
 import com.ecommerce.Ecommerce_System.service.ProductService;
 
@@ -31,14 +33,22 @@ public class ProductController {
 	@Autowired
 	CategoryService categoryService;
 
+	@Autowired
+	BrandService brandService;
+
 	@PostMapping("/add")
 	public ResponseEntity<ApiResponse> addProduct(@RequestBody ProductDto productDto) {
 		Optional<CategoryModel> optionalCategory = categoryService.readCategory(productDto.getCategoryId());
+		Optional<BrandModel> optionalBrand = brandService.readBrand(productDto.getBrandId());
 		if (!optionalCategory.isPresent()) {
-			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Category is invalid"), HttpStatus.CONFLICT);
+		}
+		if (!optionalBrand.isPresent()) {
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Brand is invalid"), HttpStatus.CONFLICT);
 		}
 		CategoryModel category = optionalCategory.get();
-		productService.addProduct(productDto, category);
+		BrandModel brands = optionalBrand.get();
+		productService.addProduct(productDto, category, brands);
 		return new ResponseEntity<>(new ApiResponse(true, "Product has been added"), HttpStatus.CREATED);
 	}
 
@@ -54,11 +64,16 @@ public class ProductController {
 	public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productID") Integer productID,
 			@RequestBody @Valid ProductDto productDto) {
 		Optional<CategoryModel> optionalCategory = categoryService.readCategory(productDto.getCategoryId());
+		Optional<BrandModel> optionalBrand = brandService.readBrand(productDto.getBrandId());
 		if (!optionalCategory.isPresent()) {
 			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);
 		}
+		if (!optionalBrand.isPresent()) {
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Brand is invalid"), HttpStatus.CONFLICT);
+		}
 		CategoryModel category = optionalCategory.get();
-		productService.updateProduct(productID, productDto, category);
+		BrandModel brands = optionalBrand.get();
+		productService.updateProduct(productID, productDto, category, brands);
 		return new ResponseEntity<>(new ApiResponse(true, "Product has been updated"), HttpStatus.OK);
 	}
 }
