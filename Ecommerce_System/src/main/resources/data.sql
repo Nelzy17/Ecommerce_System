@@ -1,0 +1,1 @@
+insert into categories(category_name, description) VALUES ('T-shirts','best shirts')

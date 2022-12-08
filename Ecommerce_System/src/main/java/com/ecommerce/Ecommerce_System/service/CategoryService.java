@@ -35,7 +35,6 @@ public class CategoryService {
 		CategoryModel category = categoryDao.findById(categoryID).get();
 		category.setCategoryName(newCategory.getCategoryName());
 		category.setDescription(newCategory.getDescription());
-		category.setImageUrl(newCategory.getImageUrl());
 		categoryDao.save(category);
 	}
 }

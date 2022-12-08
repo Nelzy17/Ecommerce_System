@@ -21,8 +21,6 @@ public class CategoryModel {
 
 	private @NotBlank String description;
 
-	private @NotBlank String imageUrl;
-
 	public CategoryModel() {
 	}
 
@@ -34,7 +32,6 @@ public class CategoryModel {
 	public CategoryModel(@NotBlank String categoryName, @NotBlank String description, @NotBlank String imageUrl) {
 		this.categoryName = categoryName;
 		this.description = description;
-		this.imageUrl = imageUrl;
 	}
 
 	public String getCategoryName() {
@@ -56,14 +53,6 @@ public class CategoryModel {
 	@Override
 	public String toString() {
 		return "User {category id=" + id + ", category name='" + categoryName + "', description='" + description + "'}";
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
 	}
 
 	public Integer getId() {
