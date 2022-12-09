@@ -6,17 +6,20 @@ import com.ecommerce.Ecommerce_System.model.ProductModel;
 
 public class ProductDto {
 
-	private Integer id;
-	private @NotNull String name;
+	private @NotNull Integer productId;
+	private @NotNull String productName;
 	private @NotNull String imageURL;
 	private @NotNull double price;
 	private @NotNull String description;
 	private @NotNull Integer categoryId;
 	private @NotNull Integer brandId;
 
-	public ProductDto(@NotNull String name, @NotNull String imageURL, @NotNull double price,
+	public ProductDto() {
+	}
+
+	public ProductDto(@NotNull String productName, @NotNull String imageURL, @NotNull double price,
 			@NotNull String description, @NotNull Integer categoryId, @NotNull Integer brandId) {
-		this.name = name;
+		this.productName = productName;
 		this.imageURL = imageURL;
 		this.price = price;
 		this.description = description;
@@ -25,8 +28,8 @@ public class ProductDto {
 	}
 
 	public ProductDto(ProductModel product) {
-		this.id = product.getId();
-		this.name = product.getName();
+		this.productId = product.getProductId();
+		this.productName = product.getProductName();
 		this.imageURL = product.getImageURL();
 		this.price = product.getPrice();
 		this.description = product.getDescription();
@@ -34,15 +37,12 @@ public class ProductDto {
 		this.brandId = product.getBrand().getId();
 	}
 
-	public ProductDto() {
+	public Integer getProductId() {
+		return productId;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
+	public String getProductName() {
+		return productName;
 	}
 
 	public String getImageURL() {
@@ -65,12 +65,12 @@ public class ProductDto {
 		return brandId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setProductId(Integer id) {
+		this.productId = id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public void setImageURL(String imageURL) {

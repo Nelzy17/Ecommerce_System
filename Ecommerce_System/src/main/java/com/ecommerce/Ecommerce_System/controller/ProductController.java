@@ -1,7 +1,7 @@
 package com.ecommerce.Ecommerce_System.controller;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.NoSuchElementException;
 
 import javax.validation.Valid;
 
@@ -28,34 +28,40 @@ import com.ecommerce.Ecommerce_System.service.ProductService;
 public class ProductController {
 
 	@Autowired
-	ProductService productService;
+	private ProductService productService;
 
 	@Autowired
-	CategoryService categoryService;
+	private CategoryService categoryService;
 
 	@Autowired
-	BrandService brandService;
+	private BrandService brandService;
 
 	@PostMapping("/add")
 	public ResponseEntity<ApiResponse> addProduct(@RequestBody ProductDto productDto) {
-		Optional<CategoryModel> optionalCategory = categoryService.readById(productDto.getCategoryId());
-		Optional<BrandModel> optionalBrand = brandService.readBrand(productDto.getBrandId());
-		if (!optionalCategory.isPresent()) {
-			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Category is invalid"), HttpStatus.CONFLICT);
+		CategoryModel category;
+		BrandModel brand;
+
+		try {
+			category = categoryService.readById(productDto.getCategoryId()).get();
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Category does not exist"),
+					HttpStatus.CONFLICT);
 		}
-		if (!optionalBrand.isPresent()) {
-			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Brand is invalid"), HttpStatus.CONFLICT);
+
+		try {
+			brand = brandService.readBrand(productDto.getBrandId()).get();
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Brand does not exist"), HttpStatus.CONFLICT);
 		}
-		CategoryModel category = optionalCategory.get();
-		BrandModel brands = optionalBrand.get();
-		productService.addProduct(productDto, category, brands);
+
+		productService.addProduct(productDto, category, brand);
 		return new ResponseEntity<>(new ApiResponse(true, "Product has been added"), HttpStatus.CREATED);
 	}
 
 	// list all the products
 	@GetMapping("/")
 	public ResponseEntity<List<ProductDto>> getProducts() {
-		List<ProductDto> productDtos = productService.listProducts();
+		List<ProductDto> productDtos = productService.listAllProducts();
 		return new ResponseEntity<>(productDtos, HttpStatus.OK);
 	}
 
@@ -63,17 +69,23 @@ public class ProductController {
 	@PostMapping("/update/{productID}")
 	public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productID") Integer productID,
 			@RequestBody @Valid ProductDto productDto) {
-		Optional<CategoryModel> optionalCategory = categoryService.readById(productDto.getCategoryId());
-		Optional<BrandModel> optionalBrand = brandService.readBrand(productDto.getBrandId());
-		if (!optionalCategory.isPresent()) {
-			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);
+		CategoryModel category;
+		BrandModel brand;
+
+		try {
+			category = categoryService.readById(productDto.getCategoryId()).get();
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Category does not exist"),
+					HttpStatus.CONFLICT);
 		}
-		if (!optionalBrand.isPresent()) {
-			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Brand is invalid"), HttpStatus.CONFLICT);
+
+		try {
+			brand = brandService.readBrand(productDto.getBrandId()).get();
+		} catch (NoSuchElementException e) {
+			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Brand does not exist"), HttpStatus.CONFLICT);
 		}
-		CategoryModel category = optionalCategory.get();
-		BrandModel brands = optionalBrand.get();
-		productService.updateProduct(productID, productDto, category, brands);
+
+		productService.updateProduct(productID, productDto, category, brand);
 		return new ResponseEntity<>(new ApiResponse(true, "Product has been updated"), HttpStatus.OK);
 	}
 }

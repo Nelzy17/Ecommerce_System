@@ -13,6 +13,7 @@ import javax.validation.constraints.NotBlank;
 public class BrandModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "brand_id")
 	private Integer id;
 
 	@Column(name = "brand_name")
