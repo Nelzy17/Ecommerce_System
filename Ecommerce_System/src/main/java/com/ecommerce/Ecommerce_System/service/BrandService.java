@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.ecommerce.Ecommerce_System.dao.BrandRepository;
 import com.ecommerce.Ecommerce_System.model.BrandModel;
+import com.ecommerce.Ecommerce_System.service.interfaces.IBrandService;
 
 @Service
-public class BrandService {
+public class BrandService implements IBrandService {
 
 	@Autowired
 	private BrandRepository brandRepo;

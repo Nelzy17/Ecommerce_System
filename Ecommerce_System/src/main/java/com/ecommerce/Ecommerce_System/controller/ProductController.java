@@ -19,22 +19,22 @@ import com.ecommerce.Ecommerce_System.config.ApiResponse;
 import com.ecommerce.Ecommerce_System.dto.product.ProductDto;
 import com.ecommerce.Ecommerce_System.model.BrandModel;
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
-import com.ecommerce.Ecommerce_System.service.BrandService;
-import com.ecommerce.Ecommerce_System.service.CategoryService;
-import com.ecommerce.Ecommerce_System.service.ProductService;
+import com.ecommerce.Ecommerce_System.service.interfaces.IBrandService;
+import com.ecommerce.Ecommerce_System.service.interfaces.ICategoryService;
+import com.ecommerce.Ecommerce_System.service.interfaces.IProductService;
 
 @RestController
 @RequestMapping("/product")
 public class ProductController {
 
 	@Autowired
-	private ProductService productService;
+	private IProductService productService;
 
 	@Autowired
-	private CategoryService categoryService;
+	private ICategoryService categoryService;
 
 	@Autowired
-	private BrandService brandService;
+	private IBrandService brandService;
 
 	@PostMapping("/add")
 	public ResponseEntity<ApiResponse> addProduct(@RequestBody ProductDto productDto) {

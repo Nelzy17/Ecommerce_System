@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.ecommerce.Ecommerce_System.dao.CategoryRepository;
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
+import com.ecommerce.Ecommerce_System.service.interfaces.ICategoryService;
 
 @Service
-public class CategoryService {
+public class CategoryService implements ICategoryService {
 
 	@Autowired
 	private CategoryRepository categoryRepo;

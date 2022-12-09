@@ -11,27 +11,17 @@ import com.ecommerce.Ecommerce_System.dto.product.ProductDto;
 import com.ecommerce.Ecommerce_System.model.BrandModel;
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
 import com.ecommerce.Ecommerce_System.model.ProductModel;
+import com.ecommerce.Ecommerce_System.service.interfaces.IProductService;
 
 @Service
-public class ProductService {
+public class ProductService implements IProductService {
 
 	@Autowired
 	private ProductRepository productRepo;
 
 	public void addProduct(ProductDto productDto, CategoryModel category, BrandModel brand) {
-		ProductModel product = getProduct(productDto, category, brand);
+		ProductModel product = getProductHelper(productDto, category, brand);
 		productRepo.save(product);
-	}
-
-	public static ProductModel getProduct(ProductDto productDto, CategoryModel category, BrandModel brand) {
-		ProductModel product = new ProductModel();
-		product.setCategory(category);
-		product.setDescription(productDto.getDescription());
-		product.setImageURL(productDto.getImageURL());
-		product.setPrice(productDto.getPrice());
-		product.setProductName(productDto.getProductName());
-		product.setBrand(brand);
-		return product;
 	}
 
 	public List<ProductDto> listAllProducts() {
@@ -47,9 +37,20 @@ public class ProductService {
 	}
 
 	public void updateProduct(Integer productID, ProductDto productDto, CategoryModel category, BrandModel brand) {
-		ProductModel product = getProduct(productDto, category, brand);
+		ProductModel product = getProductHelper(productDto, category, brand);
 		product.setId(productID);
 		productRepo.save(product);
+	}
+
+	private static ProductModel getProductHelper(ProductDto productDto, CategoryModel category, BrandModel brand) {
+		ProductModel product = new ProductModel();
+		product.setCategory(category);
+		product.setDescription(productDto.getDescription());
+		product.setImageURL(productDto.getImageURL());
+		product.setPrice(productDto.getPrice());
+		product.setProductName(productDto.getProductName());
+		product.setBrand(brand);
+		return product;
 	}
 
 }

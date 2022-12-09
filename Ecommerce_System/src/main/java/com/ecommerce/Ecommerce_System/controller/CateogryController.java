@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
-import com.ecommerce.Ecommerce_System.service.CategoryService;
+import com.ecommerce.Ecommerce_System.service.interfaces.ICategoryService;
 
 @RestController
 @RequestMapping("/category")
@@ -18,7 +18,7 @@ import com.ecommerce.Ecommerce_System.service.CategoryService;
 public class CateogryController {
 
 	@Autowired
-	private CategoryService categoryService;
+	private ICategoryService categoryService;
 
 	@GetMapping("/")
 	public ResponseEntity<List<CategoryModel>> getCategories() {
