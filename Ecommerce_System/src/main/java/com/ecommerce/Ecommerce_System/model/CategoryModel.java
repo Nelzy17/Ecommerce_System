@@ -9,58 +9,43 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "Categories")
 public class CategoryModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer categoryId;
 
 	@Column(name = "category_name")
 	private @NotBlank String categoryName;
 
-	private @NotBlank String description;
-
 	public CategoryModel() {
 	}
 
-	public CategoryModel(@NotBlank String categoryName, @NotBlank String description) {
+	public CategoryModel(@NotBlank String categoryName) {
 		this.categoryName = categoryName;
-		this.description = description;
+
 	}
 
-	public CategoryModel(@NotBlank String categoryName, @NotBlank String description, @NotBlank String imageUrl) {
-		this.categoryName = categoryName;
-		this.description = description;
+	public Integer getId() {
+		return categoryId;
 	}
 
 	public String getCategoryName() {
 		return this.categoryName;
 	}
 
+	public void setId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	@Override
 	public String toString() {
-		return "User {category id=" + id + ", category name='" + categoryName + "', description='" + description + "'}";
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+		return "User {category id=" + categoryId + ", category name='" + categoryName + "'}";
 	}
 
 }

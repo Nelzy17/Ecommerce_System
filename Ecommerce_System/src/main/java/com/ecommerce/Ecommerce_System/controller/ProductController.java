@@ -38,7 +38,7 @@ public class ProductController {
 
 	@PostMapping("/add")
 	public ResponseEntity<ApiResponse> addProduct(@RequestBody ProductDto productDto) {
-		Optional<CategoryModel> optionalCategory = categoryService.readCategory(productDto.getCategoryId());
+		Optional<CategoryModel> optionalCategory = categoryService.readById(productDto.getCategoryId());
 		Optional<BrandModel> optionalBrand = brandService.readBrand(productDto.getBrandId());
 		if (!optionalCategory.isPresent()) {
 			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "Category is invalid"), HttpStatus.CONFLICT);
@@ -63,7 +63,7 @@ public class ProductController {
 	@PostMapping("/update/{productID}")
 	public ResponseEntity<ApiResponse> updateProduct(@PathVariable("productID") Integer productID,
 			@RequestBody @Valid ProductDto productDto) {
-		Optional<CategoryModel> optionalCategory = categoryService.readCategory(productDto.getCategoryId());
+		Optional<CategoryModel> optionalCategory = categoryService.readById(productDto.getCategoryId());
 		Optional<BrandModel> optionalBrand = brandService.readBrand(productDto.getBrandId());
 		if (!optionalCategory.isPresent()) {
 			return new ResponseEntity<ApiResponse>(new ApiResponse(false, "category is invalid"), HttpStatus.CONFLICT);
