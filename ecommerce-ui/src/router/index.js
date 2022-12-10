@@ -8,6 +8,8 @@ import Product from "../views/Product/Product";
 
 import Signup from "../views/Signup";
 import Signin from "../views/Signin";
+import ShowDetails from "../views/Product/ShowDetails";
+
 
 
 
@@ -52,6 +54,11 @@ const routes = [
     name: 'Signin',
     component: Signin
   },
+  {
+    path : '/product/show/:id',
+    name : 'ShowDetails',
+    component: ShowDetails
+  }
 ];
 
 const router = createRouter({
