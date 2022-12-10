@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.Ecommerce_System.dao.CategoryRepository;
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
+import com.ecommerce.Ecommerce_System.repository.CategoryRepository;
 import com.ecommerce.Ecommerce_System.service.interfaces.ICategoryService;
 
 @Service

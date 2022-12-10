@@ -1,4 +1,4 @@
-package com.ecommerce.Ecommerce_System.dao;
+package com.ecommerce.Ecommerce_System.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.Ecommerce_System.dao.BrandRepository;
 import com.ecommerce.Ecommerce_System.model.BrandModel;
+import com.ecommerce.Ecommerce_System.repository.BrandRepository;
 import com.ecommerce.Ecommerce_System.service.interfaces.IBrandService;
 
 @Service

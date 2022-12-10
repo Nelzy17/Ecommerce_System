@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.Ecommerce_System.dao.ProductRepository;
 import com.ecommerce.Ecommerce_System.dto.product.ProductDto;
 import com.ecommerce.Ecommerce_System.model.BrandModel;
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
 import com.ecommerce.Ecommerce_System.model.ProductModel;
+import com.ecommerce.Ecommerce_System.repository.ProductRepository;
 import com.ecommerce.Ecommerce_System.service.interfaces.IProductService;
 
 @Service

@@ -11,13 +11,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.Ecommerce_System.dao.UserRepository;
 import com.ecommerce.Ecommerce_System.dto.user.SignInResponseDto;
 import com.ecommerce.Ecommerce_System.dto.user.SignUpResponseDto;
 import com.ecommerce.Ecommerce_System.dto.user.SigninDto;
 import com.ecommerce.Ecommerce_System.dto.user.SignupDto;
 import com.ecommerce.Ecommerce_System.exceptions.CustomException;
 import com.ecommerce.Ecommerce_System.model.UserModel;
+import com.ecommerce.Ecommerce_System.repository.UserRepository;
 import com.ecommerce.Ecommerce_System.service.interfaces.IUserService;
 
 @Service

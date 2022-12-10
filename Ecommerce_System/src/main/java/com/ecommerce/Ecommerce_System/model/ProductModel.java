@@ -1,5 +1,6 @@
 package com.ecommerce.Ecommerce_System.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,13 +16,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "products")
 public class ProductModel {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer productId;
 
+	@Column(name = "product_name")
 	private @NotNull String productName;
+
+	@Column(name = "imageURL")
 	private @NotNull String imageURL;
+
+	@Column(name = "price")
 	private @NotNull double price;
+
+	@Column(name = "description")
 	private @NotNull String description;
 
 	@JsonIgnore
