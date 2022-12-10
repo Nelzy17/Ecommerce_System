@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ecommerce.Ecommerce_System.dao.ProductDao;
 import com.ecommerce.Ecommerce_System.dto.product.ProductDto;
+import com.ecommerce.Ecommerce_System.model.BrandModel;
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
 import com.ecommerce.Ecommerce_System.model.ProductModel;
 
@@ -17,18 +18,19 @@ public class ProductService {
 	@Autowired
 	private ProductDao productRepository;
 
-	public void addProduct(ProductDto productDto, CategoryModel category) {
-		ProductModel product = getProductFromDto(productDto, category);
+	public void addProduct(ProductDto productDto, CategoryModel category, BrandModel brand) {
+		ProductModel product = getProductFromDto(productDto, category, brand);
 		productRepository.save(product);
 	}
 
-	public static ProductModel getProductFromDto(ProductDto productDto, CategoryModel category) {
+	public static ProductModel getProductFromDto(ProductDto productDto, CategoryModel category, BrandModel brand) {
 		ProductModel product = new ProductModel();
 		product.setCategory(category);
 		product.setDescription(productDto.getDescription());
 		product.setImageURL(productDto.getImageURL());
 		product.setPrice(productDto.getPrice());
 		product.setName(productDto.getName());
+		product.setBrand(brand);
 		return product;
 	}
 
@@ -46,8 +48,8 @@ public class ProductService {
 	}
 
 	// update a product
-	public void updateProduct(Integer productID, ProductDto productDto, CategoryModel category) {
-		ProductModel product = getProductFromDto(productDto, category);
+	public void updateProduct(Integer productID, ProductDto productDto, CategoryModel category, BrandModel brand) {
+		ProductModel product = getProductFromDto(productDto, category, brand);
 		// set the id for updating
 		product.setId(productID);
 		// update
