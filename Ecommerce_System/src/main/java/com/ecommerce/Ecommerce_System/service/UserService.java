@@ -24,17 +24,17 @@ import com.ecommerce.Ecommerce_System.service.interfaces.IUserService;
 public class UserService implements IUserService {
 
 	@Autowired
-	UserRepository userRepository;
+	UserRepository userRepo;
 
 	Logger logger = LoggerFactory.getLogger(UserService.class);
 
 	public SignUpResponseDto signUp(SignupDto signupDto) throws CustomException {
-		// Check to see if the current email address has already been registered.
-		if (Objects.nonNull(userRepository.findByEmail(signupDto.getEmail()))) {
-			// If the email address has been registered then throw an exception.
+
+		UserModel userFlag = userRepo.findByUserName(signupDto.getUserName());
+		if (Objects.nonNull(userFlag)) {
 			throw new CustomException("User already exists");
 		}
-		// first encrypt the password
+
 		String encryptedPassword = signupDto.getPassword();
 		try {
 			encryptedPassword = hashPassword(signupDto.getPassword());
@@ -43,11 +43,11 @@ public class UserService implements IUserService {
 			logger.error("hashing password failed {}", e.getMessage());
 		}
 
-		UserModel user = new UserModel(signupDto.getFirstName(), signupDto.getLastName(), signupDto.getEmail(),
-				encryptedPassword);
+		UserModel user = new UserModel(signupDto.getFirstName(), signupDto.getLastName(), signupDto.getUserName(),
+				encryptedPassword, signupDto.getAddress());
 		try {
 			// save the User
-			userRepository.save(user);
+			userRepo.save(user);
 			// success in creating
 			return new SignUpResponseDto("success", "user created successfully");
 		} catch (Exception e) {
@@ -57,10 +57,10 @@ public class UserService implements IUserService {
 	}
 
 	public SignInResponseDto signIn(SigninDto signInDto) throws CustomException {
-		// first find User by email
-		UserModel user = userRepository.findByEmail(signInDto.getEmail());
+
+		UserModel user = userRepo.findByUserName(signInDto.getUserName());
 		if (!Objects.nonNull(user)) {
-			throw new CustomException("user not present");
+			throw new CustomException("User does not exist");
 		}
 		try {
 			// check if password is right
@@ -74,7 +74,7 @@ public class UserService implements IUserService {
 			throw new CustomException(e.getMessage());
 		}
 
-		return new SignInResponseDto("success");
+		return new SignInResponseDto("success", user.getId(), user.getUserName());
 	}
 
 	private String hashPassword(String password) throws NoSuchAlgorithmException {
@@ -83,5 +83,13 @@ public class UserService implements IUserService {
 		byte[] digest = md.digest();
 		String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
 		return myHash;
+	}
+
+	public UserModel getUser(String userName) {
+		UserModel user = userRepo.findByUserName(userName);
+		if (Objects.nonNull(user)) {
+			return user;
+		}
+		return null;
 	}
 }

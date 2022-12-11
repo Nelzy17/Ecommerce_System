@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <Navbar />
+      <Navbar :key="$route.fullPath"></Navbar>
     </div>
     <div style="min-height: 60vh">
       <router-view v-if="(products && categories && brands)"

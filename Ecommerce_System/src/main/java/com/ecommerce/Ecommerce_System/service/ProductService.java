@@ -2,11 +2,13 @@ package com.ecommerce.Ecommerce_System.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.Ecommerce_System.dto.product.ProductDto;
+import com.ecommerce.Ecommerce_System.exceptions.CustomException;
 import com.ecommerce.Ecommerce_System.model.BrandModel;
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
 import com.ecommerce.Ecommerce_System.model.ProductModel;
@@ -51,6 +53,13 @@ public class ProductService implements IProductService {
 		product.setProductName(productDto.getProductName());
 		product.setBrand(brand);
 		return product;
+	}
+
+	public ProductModel getProductById(Integer productId) throws CustomException {
+		Optional<ProductModel> optionalProduct = productRepo.findById(productId);
+		if (!optionalProduct.isPresent())
+			throw new CustomException("Product id is invalid " + productId);
+		return optionalProduct.get();
 	}
 
 }
