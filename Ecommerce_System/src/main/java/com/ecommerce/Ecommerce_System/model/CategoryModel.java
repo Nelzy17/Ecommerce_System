@@ -15,7 +15,7 @@ public class CategoryModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "category_id")
-	private Integer categoryId;
+	private Integer id;
 
 	@Column(name = "category_name")
 	private @NotBlank String categoryName;
@@ -29,7 +29,7 @@ public class CategoryModel {
 	}
 
 	public Integer getId() {
-		return categoryId;
+		return id;
 	}
 
 	public String getCategoryName() {
@@ -37,7 +37,7 @@ public class CategoryModel {
 	}
 
 	public void setId(Integer categoryId) {
-		this.categoryId = categoryId;
+		this.id = categoryId;
 	}
 
 	public void setCategoryName(String categoryName) {
@@ -46,7 +46,7 @@ public class CategoryModel {
 
 	@Override
 	public String toString() {
-		return "User {category id=" + categoryId + ", category name='" + categoryName + "'}";
+		return "User {category id=" + id + ", category name='" + categoryName + "'}";
 	}
 
 }

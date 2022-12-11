@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.Ecommerce_System.config.ApiResponse;
 import com.ecommerce.Ecommerce_System.dto.product.ProductDto;
+import com.ecommerce.Ecommerce_System.exceptions.CustomException;
 import com.ecommerce.Ecommerce_System.model.BrandModel;
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
 import com.ecommerce.Ecommerce_System.service.interfaces.IBrandService;
@@ -62,6 +64,20 @@ public class ProductController {
 	@GetMapping("/")
 	public ResponseEntity<List<ProductDto>> getProducts() {
 		List<ProductDto> productDtos = productService.listAllProducts();
+		return new ResponseEntity<>(productDtos, HttpStatus.OK);
+	}
+
+	@GetMapping("/category")
+	public ResponseEntity<List<ProductDto>> getProductsByCategory(@RequestParam("categoryId") int categoryId)
+			throws CustomException {
+		List<ProductDto> productDtos = productService.getProductByCategory(categoryId);
+		return new ResponseEntity<>(productDtos, HttpStatus.OK);
+	}
+
+	@GetMapping("/brand")
+	public ResponseEntity<List<ProductDto>> getProductsByBrand(@RequestParam("brandId") int brandId)
+			throws CustomException {
+		List<ProductDto> productDtos = productService.getProductByBrand(brandId);
 		return new ResponseEntity<>(productDtos, HttpStatus.OK);
 	}
 

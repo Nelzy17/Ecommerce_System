@@ -62,4 +62,36 @@ public class ProductService implements IProductService {
 		return optionalProduct.get();
 	}
 
+	public List<ProductDto> getProductByCategory(Integer categoryId) throws CustomException {
+		List<ProductDto> productDtos;
+		try {
+			System.out.println("*****");
+			System.out.println(categoryId);
+			List<ProductModel> products = productRepo.findAllByCategoryId(categoryId);
+			productDtos = new ArrayList<>();
+			for (ProductModel product : products) {
+				productDtos.add(new ProductDto(product));
+			}
+		} catch (Exception e) {
+			throw new CustomException("Category id is invalid " + categoryId);
+		}
+
+		return productDtos;
+	}
+
+	public List<ProductDto> getProductByBrand(Integer brandId) throws CustomException {
+		List<ProductDto> productDtos;
+		try {
+			List<ProductModel> products = productRepo.findAllByBrandId(brandId);
+			productDtos = new ArrayList<>();
+			for (ProductModel product : products) {
+				productDtos.add(new ProductDto(product));
+			}
+		} catch (Exception e) {
+			throw new CustomException("brand Id id is invalid " + brandId);
+		}
+
+		return productDtos;
+	}
+
 }
