@@ -84,4 +84,12 @@ public class UserService implements IUserService {
 		String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
 		return myHash;
 	}
+
+	public UserModel getUser(String userName) {
+		UserModel user = userRepo.findByUserName(userName);
+		if (Objects.nonNull(user)) {
+			return user;
+		}
+		return null;
+	}
 }
