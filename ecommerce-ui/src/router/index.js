@@ -9,6 +9,7 @@ import Product from "../views/Product/Product";
 import Signup from "../views/Signup";
 import Signin from "../views/Signin";
 import ShowDetails from "../views/Product/ShowDetails";
+import Brands from "../views/Brands/Brands";
 
 
 
@@ -58,6 +59,11 @@ const routes = [
     path : '/product/show/:id',
     name : 'ShowDetails',
     component: ShowDetails
+  },
+  {
+    path : '/admin/brand',
+    name : 'BrandCategory',
+    component: Brands
   }
 ];
 
