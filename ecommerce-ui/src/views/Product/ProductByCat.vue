@@ -2,11 +2,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-
-          <h4 class="pt-3">Products</h4>
-          <router-link id="add-product" v-if="userName"  :to="{name : 'AddProduct'}" v-show="$route.name=='AdminProduct'">
-            <button class="btn">Add a new Product</button>
-          </router-link>
+          <h4 class="pt-3"> Products</h4>
         </div>
       </div>
       <div class="row">
@@ -20,21 +16,36 @@
   
   <script>
   import ProductBox from '../../components/Product/ProductBox';
+  const axios = require('axios')
   export default {
     // eslint-disable-next-line vue/multi-word-component-names
-    name: 'Product',
+    name: 'ProductByCat',
     data() {
         return {
-          userName: null,
+          products: null,
+          categoryId: null,
         };
     },
     components : {ProductBox},
-    props : [ "baseURL" , "products" ],
+    props : [ "baseURL" ],
+    methods: {
+    // fetch all the items in cart
+     listproductsbyCategory(){
+      axios.get(`${this.baseURL}/product/category?categoryId=${this.categoryId}`).then((response) => {
+        if(response.status==200){
+          const result = response.data;
+          // store cartitems and total price in two variables
+          this.products = result;
+        }
+      },
+      (error)=>{
+        console.log(error)
+      });
+    },
+  },
     mounted(){
-      this.userName = localStorage.getItem('userName');
-      if(this.userName!="admin"){
-        this.userName = null
-      }    
+      this.categoryId = this.$route.params.id;
+      this.listproductsbyCategory()
     }
   }
   </script>

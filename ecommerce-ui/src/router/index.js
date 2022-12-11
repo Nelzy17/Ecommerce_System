@@ -11,6 +11,9 @@ import Signin from "../views/Signin";
 import ShowDetails from "../views/Product/ShowDetails";
 import Brands from "../views/Brands/Brands";
 import Cart from "../views/cart/Cart";
+import ProductByCat from "../views/Product/ProductByCat";
+import ProductByBrand from "../views/Product/ProductByBrand"
+
 
 
 
@@ -70,7 +73,18 @@ const routes = [
     path : '/admin/cart',
     name : 'Cart',
     component: Cart
-  }
+  },
+  {
+
+    path : '/product/category/:id',
+    name : 'ProductByCat',
+    component: ProductByCat
+  },
+  {
+    path : '/product/brand/:id',
+    name : 'ProductByBrand',
+    component: ProductByBrand
+  },
 ];
 
 const router = createRouter({

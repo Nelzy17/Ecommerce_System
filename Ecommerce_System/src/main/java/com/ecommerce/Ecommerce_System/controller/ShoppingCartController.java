@@ -41,7 +41,7 @@ public class ShoppingCartController {
 
 		// get the user
 		UserModel user = userService.getUser(userName);
-
+		System.out.println(user.getUserName());
 		// find the product to add and add item by service
 		ProductModel product = productService.getProductById(addToCartDto.getProductId());
 		shoppingCartService.addToCart(addToCartDto, product, user);
