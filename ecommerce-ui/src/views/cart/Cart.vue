@@ -43,7 +43,7 @@
     data() {
       return {
         cartItems: [],
-        token: null,
+        userName: null,
         totalcost:0
       }
     },
@@ -59,7 +59,7 @@
        },
       // fetch all the items in cart
       listCartItems(){
-        axios.get(`${this.baseURL}cart/?token=${this.token}`).then((response) => {
+        axios.get(`${this.baseURL}shoppingcart/?UserName=${this.userName}`).then((response) => {
           if(response.status==200){
             const result = response.data;
             // store cartitems and total price in two variables
@@ -74,7 +74,7 @@
     },
   
     mounted() {
-      this.token = localStorage.getItem("token");
+      this.userName = localStorage.getItem("userName");
       this.listCartItems();
     },
   };

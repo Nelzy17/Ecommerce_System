@@ -70,7 +70,7 @@ import swal from 'sweetalert';
       methods:{ // add to cart function
         addToCart(productId){
             // post productId and quantity
-            axios.post(`${this.baseURL}cart/add?token=${this.token}`,{
+            axios.post(`${this.baseURL}shoppingcart/add?UserName=${this.userName}`,{
                 productId : productId,
                 quantity : this.quantity
             }).then((response) => {
@@ -98,6 +98,7 @@ import swal from 'sweetalert';
           this.id = this.$route.params.id;
           this.product = this.products.find(product => product.productId == this.id);
           this.category = this.categories.find(category => category.id == this.product.categoryId);
+          this.userName = localStorage.getItem('userName');
       }
     }
 </script>

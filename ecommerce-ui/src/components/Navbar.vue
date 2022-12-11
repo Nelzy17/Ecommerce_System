@@ -114,5 +114,9 @@
       border-bottom-right-radius: 2px;
     }
 
+    .bg-dark {
+    background-color: black !important;
+}
+
   </style>
   
