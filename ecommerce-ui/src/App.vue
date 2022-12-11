@@ -4,10 +4,11 @@
       <Navbar />
     </div>
     <div style="min-height: 60vh">
-      <router-view v-if="products && categories"
+      <router-view v-if="(products && categories && brands)"
          :baseURL="baseURL"
          :products="products"
          :categories="categories"
+         :brands = "brands"
          @fetchData = "fetchData">
       </router-view>
     </div>
@@ -26,7 +27,8 @@ export default {
     return {
       baseURL : "//localhost:8080/",
       products : null,
-      categories : null
+      categories : null,
+      brands : null
     }
   },
 
@@ -42,6 +44,10 @@ export default {
       await axios.get(this.baseURL + "category/")
               .then(res => this.categories = res.data)
               .catch(err => console.log(err))
+      
+      await axios.get(this.baseURL + "brand/")
+      .then(res => this.brands = res.data)
+      .catch(err => console.log(err))
     }
   },
   mounted() {

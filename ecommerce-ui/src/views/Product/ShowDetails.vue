@@ -6,11 +6,11 @@
             </div>
             <!--                Display the image in left side-->
             <div class="col-md-4 col-12">
-                <img :src="product.imageURL" :alt="product.name" class="img-fluid">
+                <img :src="product.imageURL" :alt="product.productName" class="img-fluid">
             </div>
             <!-- Display product name category name and product description-->
             <div class="col-md-6 col-12 pt-3 pt-md-0">
-                <h4>{{product.name}}</h4>
+                <h4>{{product.productName}}</h4>
 
                 <h6 class="category font-italic">{{category.categoryName}}</h6>
 
@@ -59,7 +59,7 @@
       },
       mounted() {
           this.id = this.$route.params.id;
-          this.product = this.products.find(product => product.id == this.id);
+          this.product = this.products.find(product => product.productId == this.id);
           this.category = this.categories.find(category => category.id == this.product.categoryId);
       }
     }

@@ -39,7 +39,7 @@
           </ProductBox>
         </div>
       </div>
-    </div>
+    </div> 
 
     <hr>
     <div class="container">
@@ -50,7 +50,7 @@
       </div>
       <div class="row">
         <div v-for="index in this.brands_size" :key="index" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
-          <BrandsBox :brand="brandds[index-1]">
+          <BrandsBox :brands="brands[index-1]">
           </BrandsBox>
         </div>
       </div>
@@ -81,10 +81,10 @@
       this.category_size = Math.min(6, this.category_size);
 
       this.product_size = this.products.length;
-      this.product_size = Math.min(8, this.category_size);
+      this.product_size = Math.min(8, this.product_size);
 
-      this.brand_size = this.brands.length;
-      this.brand_size = Math.min(8, this.brands_size);
+      this.brands_size = this.brands.length;
+      this.brands_size = Math.min(8, this.brands_size);
     }
   }
 </script>
