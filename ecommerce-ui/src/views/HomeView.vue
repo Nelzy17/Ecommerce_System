@@ -5,7 +5,7 @@
 
       <div class="container py-5">
         <header class="text-left text-white py-5">
-          <h3 class="mb-4 rounded"><a href="#start-shopping" class="bg-white px-2 py-2 rounded" id="heading">Start Smoking Cigarettes!!</a></h3>
+          <h3 class="mb-4 rounded"><a href="#start-shopping" class="bg-white px-2 py-2 rounded" id="heading">Stop Smoking Cigarettes!!</a></h3>
           <p id="content" class="lead mb-0 bg-dark p-1 rounded">Smoking is bad for your health as the toxins produced by burning tobacco cause smoking-related illnesses.
             Vaping is not harmless, but it is much less harmful than smoking.Some people find cutting down as a helpful step to quitting, but stopping smoking completely should be the end goal. To help quit smoking is why we came up with this initiative of selling vapes online.</p>
         </header>

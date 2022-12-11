@@ -10,6 +10,7 @@ import Signup from "../views/Signup";
 import Signin from "../views/Signin";
 import ShowDetails from "../views/Product/ShowDetails";
 import Brands from "../views/Brands/Brands";
+import Cart from "../views/cart/Cart";
 
 
 
@@ -64,6 +65,11 @@ const routes = [
     path : '/admin/brand',
     name : 'BrandCategory',
     component: Brands
+  },
+  {
+    path : '/admin/cart',
+    name : 'Cart',
+    component: Cart
   }
 ];
 

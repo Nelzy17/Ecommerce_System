@@ -23,7 +23,18 @@
                         </div>
                         <input class="form-control" type="number" v-model="quantity"/>
                     </div>
+                 <!-- Add to cart button-->
+                 <button type="button" id="add-to-cart-button" class="btn" @click="addToCart(this.id)">
+                        Add to Cart
+                        <ion-icon name="cart-outline" v-pre></ion-icon>
+                    </button>
+                
+                
+                
                 </div>
+
+
+                
 
                 <!-- Dummy placeholder features -->
                 <div class="features pt-3">
@@ -44,6 +55,8 @@
 </template>
 
 <script>
+const axios = require('axios')
+import swal from 'sweetalert';
     export default {
       data(){
           return {
@@ -54,13 +67,38 @@
           }
       },
       props : ["baseURL","products", "categories"],
-      methods:{
+      methods:{ // add to cart function
+        addToCart(productId){
+            // post productId and quantity
+            axios.post(`${this.baseURL}shoppingcart/add?UserName=${this.userName}`,{
+                productId : productId,
+                quantity : this.quantity
+            }).then((response) => {
+                // success
+                if(response.status==201){
+                    swal({
+                        text: "Product Added to the cart!",
+                        icon: "success",
+                        closeOnClickOutside: false,
+                    });
+                }
+            },(error) =>{
+                // error handling
+                console.log(error)
+                swal({
+                    text: "Something wrong with add to cart",
+                    icon: "error",
+                    closeOnClickOutside: false,
+                });
+            });
+        },
 
       },
       mounted() {
           this.id = this.$route.params.id;
           this.product = this.products.find(product => product.productId == this.id);
           this.category = this.categories.find(category => category.id == this.product.categoryId);
+          this.userName = localStorage.getItem('userName');
       }
     }
 </script>
@@ -81,5 +119,8 @@
     input[type=number] {
         -moz-appearance: textfield;
     }
+    #add-to-cart-button {
+    background-color: #febd69;
+}
 
 </style>

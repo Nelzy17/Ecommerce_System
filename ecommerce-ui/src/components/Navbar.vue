@@ -39,6 +39,8 @@
             <router-link class="dropdown-item" :to="{name : 'BrandCategory'}">Brands</router-link>
         </div>
       </li>
+
+      
   
         <!--      Account drop down-->
       <li class="nav-item dropdown">
@@ -54,6 +56,10 @@
             <a class="dropdown-item" v-if="userId" href="#" @click="signout">Sign Out</a>
         </div>
       </li>
+
+      <li class="nav-item">
+      <router-link class="text-light" :to="{name : 'Cart'}"><i class="fa fa-shopping-cart" style="font-size:36px"></i></router-link>
+    </li>
     </nav>
   
   </template>
@@ -107,6 +113,10 @@
       border-top-right-radius: 2px;
       border-bottom-right-radius: 2px;
     }
+
+    .bg-dark {
+    background-color: black !important;
+}
 
   </style>
   
