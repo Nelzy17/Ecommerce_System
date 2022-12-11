@@ -1,4 +1,4 @@
-package com.ecommerce.Ecommerce_System.dao;
+package com.ecommerce.Ecommerce_System.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.ecommerce.Ecommerce_System.model.ProductModel;
 
 @Repository
-public interface ProductDao extends JpaRepository<ProductModel, Integer> {
+public interface ProductRepository extends JpaRepository<ProductModel, Integer> {
 
 }

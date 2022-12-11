@@ -11,14 +11,14 @@ import com.ecommerce.Ecommerce_System.dto.user.SignUpResponseDto;
 import com.ecommerce.Ecommerce_System.dto.user.SigninDto;
 import com.ecommerce.Ecommerce_System.dto.user.SignupDto;
 import com.ecommerce.Ecommerce_System.exceptions.CustomException;
-import com.ecommerce.Ecommerce_System.service.UserService;
+import com.ecommerce.Ecommerce_System.service.interfaces.IUserService;
 
 @RequestMapping("user")
 @RestController
 public class UserController {
 
 	@Autowired
-	UserService userService;
+	IUserService userService;
 
 	@PostMapping("/signup")
 	public SignUpResponseDto Signup(@RequestBody SignupDto signupDto) throws CustomException {
@@ -26,7 +26,7 @@ public class UserController {
 	}
 
 	@PostMapping("/signIn")
-	public SignInResponseDto Signup(@RequestBody SigninDto signInDto) throws CustomException {
+	public SignInResponseDto SignIn(@RequestBody SigninDto signInDto) throws CustomException {
 		return userService.signIn(signInDto);
 	}
 }

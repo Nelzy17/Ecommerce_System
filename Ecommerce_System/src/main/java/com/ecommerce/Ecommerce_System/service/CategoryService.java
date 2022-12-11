@@ -6,35 +6,25 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.Ecommerce_System.dao.CategoryDao;
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
+import com.ecommerce.Ecommerce_System.repository.CategoryRepository;
+import com.ecommerce.Ecommerce_System.service.interfaces.ICategoryService;
 
 @Service
-public class CategoryService {
+public class CategoryService implements ICategoryService {
 
 	@Autowired
-	private CategoryDao categoryDao;
+	private CategoryRepository categoryRepo;
 
-	public CategoryModel readCategory(String categoryName) {
-		return categoryDao.findByCategoryName(categoryName);
+	public CategoryModel readByName(String categoryName) {
+		return categoryRepo.findByCategoryName(categoryName);
 	}
 
-	public void createCategory(CategoryModel category) {
-		categoryDao.save(category);
+	public Optional<CategoryModel> readById(Integer categoryId) {
+		return categoryRepo.findById(categoryId);
 	}
 
-	public List<CategoryModel> listCategories() {
-		return categoryDao.findAll();
-	}
-
-	public Optional<CategoryModel> readCategory(Integer categoryId) {
-		return categoryDao.findById(categoryId);
-	}
-
-	public void updateCategory(Integer categoryID, CategoryModel newCategory) {
-		CategoryModel category = categoryDao.findById(categoryID).get();
-		category.setCategoryName(newCategory.getCategoryName());
-		category.setDescription(newCategory.getDescription());
-		categoryDao.save(category);
+	public List<CategoryModel> listAllCategories() {
+		return categoryRepo.findAll();
 	}
 }

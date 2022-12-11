@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.Ecommerce_System.model.BrandModel;
-import com.ecommerce.Ecommerce_System.service.BrandService;
+import com.ecommerce.Ecommerce_System.service.interfaces.IBrandService;
 
 @RestController
 @RequestMapping("/brand")
 public class BrandController {
 
 	@Autowired
-	private BrandService brandService;
+	private IBrandService brandService;
 
 	@GetMapping("/")
 	public ResponseEntity<List<BrandModel>> getBrands() {

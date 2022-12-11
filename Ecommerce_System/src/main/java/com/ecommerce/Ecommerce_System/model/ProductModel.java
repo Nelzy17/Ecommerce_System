@@ -1,5 +1,6 @@
 package com.ecommerce.Ecommerce_System.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,13 +16,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "products")
 public class ProductModel {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@Column(name = "id")
+	private Integer productId;
 
-	private @NotNull String name;
+	@Column(name = "product_name")
+	private @NotNull String productName;
+
+	@Column(name = "imageURL")
 	private @NotNull String imageURL;
+
+	@Column(name = "price")
 	private @NotNull double price;
+
+	@Column(name = "description")
 	private @NotNull String description;
 
 	@JsonIgnore
@@ -37,10 +47,10 @@ public class ProductModel {
 	public ProductModel() {
 	}
 
-	public ProductModel(String name, String imageURL, double price, String description, CategoryModel category,
+	public ProductModel(String productName, String imageURL, double price, String description, CategoryModel category,
 			BrandModel brand) {
 		super();
-		this.name = name;
+		this.productName = productName;
 		this.imageURL = imageURL;
 		this.price = price;
 		this.description = description;
@@ -48,12 +58,12 @@ public class ProductModel {
 		this.brand = brand;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getProductId() {
+		return productId;
 	}
 
-	public String getName() {
-		return name;
+	public String getProductName() {
+		return productName;
 	}
 
 	public String getImageURL() {
@@ -76,12 +86,12 @@ public class ProductModel {
 		return brand;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer productId) {
+		this.productId = productId;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 	public void setImageURL(String imageURL) {
@@ -106,7 +116,7 @@ public class ProductModel {
 
 	@Override
 	public String toString() {
-		return "Product{" + "id=" + id + ", name='" + name + '\'' + ", imageURL='" + imageURL + '\'' + ", price="
-				+ price + ", description='" + description + '\'' + '}';
+		return "Product{" + "productId=" + productId + ", product name='" + productName + '\'' + ", imageURL='"
+				+ imageURL + '\'' + ", price=" + price + ", description='" + description + '\'' + '}';
 	}
 }
