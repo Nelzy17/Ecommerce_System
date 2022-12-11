@@ -1,6 +1,7 @@
 package com.ecommerce.Ecommerce_System.dto.user;
 
 public class SignUpResponseDto {
+
 	private String status;
 	private String message;
 
