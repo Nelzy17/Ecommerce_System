@@ -18,8 +18,20 @@
             </div>
             <div class="form-group">
               <label>Name</label>
-              <input type="text" class="form-control" v-model="name" required>
+              <input type="text" class="form-control" v-model="productName" required>
             </div>
+            <!-- <div class="form-group">
+              <label>Brand</label>
+              <input type="text" class="form-control" v-model="name" required>
+            </div> -->
+
+            <div class="form-group">
+              <label>Brand</label>
+              <select class="form-control" v-model="brandId" required>
+                <option v-for="brand of brands" :key="brand.id" :value="brand.id">{{brand.brandModel}}</option>
+              </select>
+            </div>
+
             <div class="form-group">
               <label>Description</label>
               <input type="text" class="form-control" v-model="description" required>
@@ -47,21 +59,23 @@
     data(){
       return {
         categoryId : null,
-        name : null,
+        productName : null,
+        brandId : null,
         description : null,
         imageURL : null,
         price : null
       }
     },
-    props : ["baseURL", "categories"],
+    props : ["baseURL", "categories", "brands"],
     methods : {
       async addProduct() {
         const newProduct = {
           categoryId : this.categoryId,
-          name : this.name,
+          productName : this.productName,
+          brandId : this.brandId,
           description : this.description,
           imageURL : this.imageURL,
-          price : this.price
+          price : this.price,
         }
   
         await axios({

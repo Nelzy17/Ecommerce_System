@@ -2,7 +2,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h3 class="pt-3">Our Brands</h3>
+          <h3 class="pt-3">Brands</h3>
           <!-- <router-link id="add-category" :to="{name : 'AddCategory'}" v-show="$route.name=='AdminCategory'">
             <button class="btn">Add a new Brand</button>
           </router-link> -->
