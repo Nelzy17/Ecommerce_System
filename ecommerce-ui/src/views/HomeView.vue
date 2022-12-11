@@ -40,20 +40,40 @@
         </div>
       </div>
     </div>
+
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-left">
+          <h2 class="pt-3">Our Brands</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div v-for="index in this.brands_size" :key="index" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
+          <BrandsBox :brand="brandds[index-1]">
+          </BrandsBox>
+        </div>
+      </div>
+    </div>
   </div>
+
+
+  
 </template>
 
 <script>
   import ProductBox from "../components/Product/ProductBox";
   import CategoryBox from "../components/Category/CategoryBox";
+  import BrandsBox from "../components/Brands/BrandsBox";
   export default {
     name: 'HomeView',
-    components : { ProductBox, CategoryBox},
-    props : ["baseURL", "products", "categories"],
+    components : { ProductBox, CategoryBox, BrandsBox},
+    props : ["baseURL", "products", "categories", "brands"],
     data(){
       return{
         category_size:0,
-        product_size:0
+        product_size:0,
+        brands_size:0
       }
     },
     mounted(){
@@ -62,6 +82,9 @@
 
       this.product_size = this.products.length;
       this.product_size = Math.min(8, this.category_size);
+
+      this.brand_size = this.brands.length;
+      this.brand_size = Math.min(8, this.brands_size);
     }
   }
 </script>

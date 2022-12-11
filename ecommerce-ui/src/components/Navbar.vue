@@ -36,6 +36,8 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
             <router-link class="dropdown-item" :to="{name : 'AdminCategory'}">Category</router-link>
             <router-link class="dropdown-item" :to="{name : 'AdminProduct'}">Products</router-link>
+            <router-link class="dropdown-item" :to="{name : 'BrandCategory'}">Brands</router-link>
+
         </div>
       </li>
   
