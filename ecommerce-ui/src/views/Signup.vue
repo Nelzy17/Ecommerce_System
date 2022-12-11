@@ -15,8 +15,8 @@
                     <h2 class="pt-4 pl-4">Create Account</h2>
                     <form @submit="signup" class="pt-4 pl-4 pr-4">
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" v-model="email" required>
+                            <label>Username</label>
+                            <input type="userName" class="form-control" v-model="userName" required>
                         </div>
                         <div class="form-row">
                             <div class="col">
@@ -31,6 +31,10 @@
                                     <input type="name" class="form-control" v-model="lastName" required>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="address" class="form-control" v-model="address" required>
                         </div>
                         <div class="form-group">
                             <label>Password</label>
@@ -56,9 +60,10 @@ export default {
     props : ["baseURL"],
     data() {
         return {
-            email: null,
+            userName: null,
             firstName: null,
             lastName: null,
+            address: null,
             password: null,
             passwordConfirm: null
         }
@@ -71,9 +76,10 @@ export default {
 
                 // make the post body
                 const user = {
-                    email: this.email,
+                    userName: this.userName,
                     firstName: this.firstName,
                     lastName: this.lastName,
+                    address: this.address,
                     password: this.password
                 }
 
@@ -88,7 +94,7 @@ export default {
                 })
                 .then(() => {
                     // redirect to home page
-                    this.$router.replace("/");
+                    this.$router.replace("/signin");
                     swal({
                         text: "User signup successful. Please Login",
                         icon: "success",

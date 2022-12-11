@@ -37,19 +37,21 @@
             <router-link class="dropdown-item" :to="{name : 'AdminCategory'}">Category</router-link>
             <router-link class="dropdown-item" :to="{name : 'AdminProduct'}">Products</router-link>
             <router-link class="dropdown-item" :to="{name : 'BrandCategory'}">Brands</router-link>
-
         </div>
       </li>
   
         <!--      Account drop down-->
       <li class="nav-item dropdown">
-        <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link text-light dropdown-toggle" v-if="!userId" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Accounts
         </a>
+        <a class="nav-link text-light dropdown-toggle" v-if="userId" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{userName}}
+        </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <router-link class="dropdown-item" v-if="!token" :to="{name: 'Signin'}">Log In</router-link>
-            <router-link class="dropdown-item" v-if="!token" :to="{name: 'Signup'}">Sign Up</router-link>
-            <a class="dropdown-item" v-if="token" href="#" @click="signout">Sign Out</a>
+            <router-link class="dropdown-item" v-if="!userId" :to="{name: 'Signin'}">Log In</router-link>
+            <router-link class="dropdown-item" v-if="!userId" :to="{name: 'Signup'}">Sign Up</router-link>
+            <a class="dropdown-item" v-if="userId" href="#" @click="signout">Sign Out</a>
         </div>
       </li>
     </nav>
@@ -63,13 +65,16 @@
     name : "Navbar",
     data() {
         return {
-            token: null
+          userId: null,
+          userName: null
         };
     },
     methods: {
         signout() {
-            localStorage.removeItem('token');
-            this.token = null;
+            localStorage.removeItem('userId');
+            localStorage.removeItem('userName');
+            this.userId = null;
+            this.userName = null;
             this.$router.push({name:'Home'});
             swal({
                 text: "Logged you out. Visit Again",
@@ -79,7 +84,8 @@
         }
     },
     mounted() {
-      this.token = localStorage.getItem('token');
+      this.userId = localStorage.getItem('userId');
+      this.userName = localStorage.getItem('userName');
     }
   }
   </script>
@@ -101,8 +107,6 @@
       border-top-right-radius: 2px;
       border-bottom-right-radius: 2px;
     }
-    .bg-dark{
-      background-color: black !important;
-    }
+
   </style>
   

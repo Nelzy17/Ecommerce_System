@@ -2,8 +2,9 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
+
           <h4 class="pt-3">Products</h4>
-          <router-link id="add-product" :to="{name : 'AddProduct'}" v-show="$route.name=='AdminProduct'">
+          <router-link id="add-product" v-if="userId"  :to="{name : 'AddProduct'}" v-show="$route.name=='AdminProduct'">
             <button class="btn">Add a new Product</button>
           </router-link>
         </div>
@@ -22,9 +23,18 @@
   export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'Product',
+    data() {
+        return {
+          userId: null,
+        };
+    },
     components : {ProductBox},
     props : [ "baseURL" , "products" ],
     mounted(){
+      this.userId = localStorage.getItem('userId');
+      if(this.userId!=-1){
+        this.userId = null
+      }
     }
   }
   </script>

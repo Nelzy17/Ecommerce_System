@@ -12,11 +12,11 @@
       <div class="row">
         <div class="col-12 justify-content-center d-flex flex-row pt-5">
           <div id="signin-div" class="flex-item border">
-            <h2 class="pt-4 pl-4">Sign-In</h2>
+            <h2 class="pt-4 pl-4">Log-In</h2>
             <form @submit="signin" class="pt-4 pl-4 pr-4">
               <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" v-model="email" required>
+                <label>Username</label>
+                <input type="userName" class="form-control" v-model="userName" required>
               </div>
               <div class="form-group">
                 <label>Password</label>
@@ -51,7 +51,7 @@ export default {
   props : [ "baseURL"],
   data() {
     return {
-      email: null,
+      userName: null,
       password: null,
       loading: null
     }
@@ -64,13 +64,13 @@ export default {
 
       // request body
       const user = {
-        email: this.email,
+        userName: this.userName,
         password: this.password
       }
       // api call
       await axios({
         method: 'post',
-        url: this.baseURL + "user/signIn",
+        url: this.baseURL + "user/signin",
         data : JSON.stringify(user),
         headers: {
           'Content-Type': 'application/json'
@@ -78,9 +78,10 @@ export default {
       })
       .then(res => {
         // login successful, we will get token in res.data object
-        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('userId', res.data.userId);
+        localStorage.setItem('userName', res.data.userName);
         // // redirect to home page
-        this.$router.replace("/");
+        this.$router.push({name:'Home'});
         swal({
           text: "Login successful. Please continue",
           icon: "success"
