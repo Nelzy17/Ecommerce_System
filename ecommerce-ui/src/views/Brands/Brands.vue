@@ -10,7 +10,7 @@
       </div>
       <div class="row">
         <div v-for="brand of brands" :key="brand.id" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
-          <BrandsBox :brand="brand">
+          <BrandsBox :brands="brand">
           </BrandsBox>
         </div>
       </div>
@@ -27,14 +27,14 @@
     data() {
       return {
         baseURL : "//localhost:8080/",
-        categories : null,
+        brands : null,
       }
     },
     methods: {
       async getBrands() {
         //fetch categories
         await axios.get(this.baseURL + "brand/")
-        .then(res => this.categories = res.data)
+        .then(res => this.brands = res.data)
         .catch(err => console.log(err))
       }
     },
