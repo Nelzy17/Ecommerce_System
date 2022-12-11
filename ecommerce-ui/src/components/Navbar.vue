@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <!--    Logo-->
       <router-link class="navbar-brand" :to="{name : 'Home'}">
-        <img id="logo" src="../assets/icon.png" />
+        <img id="logo" src="../assets/cig.png" />
       </router-link>
   
   <!--    Burger Button-->
@@ -31,7 +31,7 @@
   <!--      Admin drop down-->
       <li class="nav-item dropdown">
         <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdownAdmin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Admin
+            Menu
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
             <router-link class="dropdown-item" :to="{name : 'AdminCategory'}">Category</router-link>
@@ -100,6 +100,9 @@
       border-color: #febd69;
       border-top-right-radius: 2px;
       border-bottom-right-radius: 2px;
+    }
+    .bg-dark{
+      background-color: black !important;
     }
   </style>
   

@@ -5,9 +5,9 @@
 
       <div class="container py-5">
         <header class="text-left text-white py-5">
-          <h3 class="mb-4 rounded"><a href="#start-shopping" class="bg-white px-2 py-2 rounded" id="heading">Start Shopping</a></h3>
-          <p id="content" class="lead mb-0 bg-dark p-1 rounded">Simple Coding Market is for educational purposes only.
-            It can be used by developers to learn about developing an ecommerce application complete with backend and frontend for Web and Android</p>
+          <h3 class="mb-4 rounded"><a href="#start-shopping" class="bg-white px-2 py-2 rounded" id="heading">Start Smoking Cigarettes!!</a></h3>
+          <p id="content" class="lead mb-0 bg-dark p-1 rounded">Smoking is bad for your health as the toxins produced by burning tobacco cause smoking-related illnesses.
+            Vaping is not harmless, but it is much less harmful than smoking.Some people find cutting down as a helpful step to quitting, but stopping smoking completely should be the end goal. To help quit smoking is why we came up with this initiative of selling vapes online.</p>
         </header>
       </div>
     </div>
@@ -15,7 +15,7 @@
     <div id="start-shopping" class="container">
       <div class="row">
         <div class="col-12 text-left">
-          <h2 class="pt-3">Top Categories</h2>
+          <h2 class="pt-3">Categories</h2>
         </div>
       </div>
       <div class="row">
@@ -30,7 +30,22 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-left">
-          <h2 class="pt-3">Top Products</h2>
+          <h2 class="pt-3">Brands</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div v-for="index in this.brands_size" :key="index" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
+          <BrandsBox :brands="brands[index-1]">
+          </BrandsBox>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 text-left">
+          <h2 class="pt-3">Products</h2>
         </div>
       </div>
       <div class="row">
@@ -41,20 +56,7 @@
       </div>
     </div> 
 
-    <hr>
-    <div class="container">
-      <div class="row">
-        <div class="col-12 text-left">
-          <h2 class="pt-3">Our Brands</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div v-for="index in this.brands_size" :key="index" class="col-md-6 col-xl-4 col-12 pt-3  justify-content-around d-flex">
-          <BrandsBox :brands="brands[index-1]">
-          </BrandsBox>
-        </div>
-      </div>
-    </div>
+    
   </div>
 
 
@@ -99,7 +101,7 @@
   }
 
   #background-div {
-    background: url(../assets/homepage.png)
+    background: url(../assets/wallp.png)
   }
 
   #heading {

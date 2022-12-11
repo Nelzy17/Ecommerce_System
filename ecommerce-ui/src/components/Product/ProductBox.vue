@@ -6,9 +6,9 @@
       <div class="card-body">
         <router-link :to="{ name: 'ShowDetails', params: { id : product.productId } }"><h5 class="card-title">{{product.productName}}</h5></router-link>
 
-        <h5 class="card-title">{{product.productName}}</h5>
+        <!-- <h5 class="card-title">{{product.productName}}</h5> -->
         <p class="card-text"><sup>$</sup>{{product.price}}</p>
-        <p class="card-text font-italic">{{product.description.substring(0,65)}}...</p>
+        <!-- <p class="card-text font-italic">{{product.description.substring(0,65)}}...</p> -->
       </div>
     </div>
   </template>
@@ -43,7 +43,7 @@
   }
   
   .card-text {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
   }
   
   #edit-product {

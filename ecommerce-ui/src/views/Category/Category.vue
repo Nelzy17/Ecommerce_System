@@ -2,10 +2,10 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h3 class="pt-3">Our Categories</h3>
-          <router-link id="add-category" :to="{name : 'AddCategory'}" v-show="$route.name=='AdminCategory'">
+          <h3 class="pt-3">Categories</h3>
+          <!-- <router-link id="add-category" :to="{name : 'AddCategory'}" v-show="$route.name=='AdminCategory'">
             <button class="btn">Add a new Category</button>
-          </router-link>
+          </router-link> -->
         </div>
       </div>
       <div class="row">
