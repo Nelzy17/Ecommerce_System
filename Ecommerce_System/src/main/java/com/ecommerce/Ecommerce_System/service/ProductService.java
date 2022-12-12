@@ -65,8 +65,6 @@ public class ProductService implements IProductService {
 	public List<ProductDto> getProductByCategory(Integer categoryId) throws CustomException {
 		List<ProductDto> productDtos;
 		try {
-			System.out.println("*****");
-			System.out.println(categoryId);
 			List<ProductModel> products = productRepo.findAllByCategoryId(categoryId);
 			productDtos = new ArrayList<>();
 			for (ProductModel product : products) {

@@ -18,8 +18,8 @@
         <li class="nav-item"><router-link class="nav-link" :to="{name : 'BrandCategory'}">Brands</router-link></li>
       </ul>
 
-      
-  
+
+
         <!--      Account drop down-->
       <li class="nav-item dropdown">
         <a class="nav-link text-light dropdown-toggle" v-if="!userId" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
