@@ -20,7 +20,7 @@ public class ProductModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer productId;
+	private Integer id;
 
 	@Column(name = "product_name")
 	private @NotNull String productName;
@@ -59,7 +59,7 @@ public class ProductModel {
 	}
 
 	public Integer getProductId() {
-		return productId;
+		return id;
 	}
 
 	public String getProductName() {
@@ -87,7 +87,7 @@ public class ProductModel {
 	}
 
 	public void setId(Integer productId) {
-		this.productId = productId;
+		this.id = productId;
 	}
 
 	public void setProductName(String productName) {
@@ -116,7 +116,7 @@ public class ProductModel {
 
 	@Override
 	public String toString() {
-		return "Product{" + "productId=" + productId + ", product name='" + productName + '\'' + ", imageURL='"
-				+ imageURL + '\'' + ", price=" + price + ", description='" + description + '\'' + '}';
+		return "Product{" + "productId=" + id + ", product name='" + productName + '\'' + ", imageURL='" + imageURL
+				+ '\'' + ", price=" + price + ", description='" + description + '\'' + '}';
 	}
 }
