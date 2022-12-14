@@ -15,9 +15,10 @@ import com.ecommerce.Ecommerce_System.model.ProductModel;
 import com.ecommerce.Ecommerce_System.model.ShoppingCartModel;
 import com.ecommerce.Ecommerce_System.model.UserModel;
 import com.ecommerce.Ecommerce_System.repository.ShoppingCartRepository;
+import com.ecommerce.Ecommerce_System.service.interfaces.IShoppingCartService;
 
 @Service
-public class ShoppingCartService {
+public class ShoppingCartService implements IShoppingCartService {
 
 	@Autowired
 	ShoppingCartRepository shoppingCartRepo;

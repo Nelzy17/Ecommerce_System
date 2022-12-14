@@ -12,9 +12,10 @@ import com.ecommerce.Ecommerce_System.model.ProductModel;
 import com.ecommerce.Ecommerce_System.model.ReviewModel;
 import com.ecommerce.Ecommerce_System.model.UserModel;
 import com.ecommerce.Ecommerce_System.repository.ReviewRepository;
+import com.ecommerce.Ecommerce_System.service.interfaces.IReviewService;
 
 @Service
-public class ReviewService {
+public class ReviewService implements IReviewService {
 
 	@Autowired
 	private ReviewRepository reviewRepo;
@@ -22,14 +23,6 @@ public class ReviewService {
 	public void addReview(ProductModel product, UserModel user, ReviewDto reviewDto) {
 		ReviewModel review = getProductHelper(product, user, reviewDto);
 		reviewRepo.save(review);
-	}
-
-	private static ReviewModel getProductHelper(ProductModel product, UserModel user, ReviewDto reviewDto) {
-		ReviewModel review = new ReviewModel();
-		review.setProduct(product);
-		review.setUser(user);
-		review.setReview(reviewDto.getReview());
-		return review;
 	}
 
 	public List<ReviewDto> listReviews(Integer productId) throws CustomException {
@@ -45,6 +38,14 @@ public class ReviewService {
 		}
 
 		return reviewDtos;
+	}
+
+	private static ReviewModel getProductHelper(ProductModel product, UserModel user, ReviewDto reviewDto) {
+		ReviewModel review = new ReviewModel();
+		review.setProduct(product);
+		review.setUser(user);
+		review.setReview(reviewDto.getReview());
+		return review;
 	}
 
 }

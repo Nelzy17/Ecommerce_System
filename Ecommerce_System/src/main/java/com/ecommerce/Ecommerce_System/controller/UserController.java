@@ -18,7 +18,7 @@ import com.ecommerce.Ecommerce_System.service.interfaces.IUserService;
 public class UserController {
 
 	@Autowired
-	IUserService userService;
+	private IUserService userService;
 
 	@PostMapping("/signup")
 	public SignUpResponseDto Signup(@RequestBody SignupDto signupDto) throws CustomException {

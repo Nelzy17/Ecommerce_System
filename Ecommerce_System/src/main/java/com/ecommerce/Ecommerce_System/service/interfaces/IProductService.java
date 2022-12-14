@@ -6,6 +6,7 @@ import com.ecommerce.Ecommerce_System.dto.product.ProductDto;
 import com.ecommerce.Ecommerce_System.exceptions.CustomException;
 import com.ecommerce.Ecommerce_System.model.BrandModel;
 import com.ecommerce.Ecommerce_System.model.CategoryModel;
+import com.ecommerce.Ecommerce_System.model.ProductModel;
 
 public interface IProductService {
 
@@ -14,6 +15,8 @@ public interface IProductService {
 	public List<ProductDto> listAllProducts();
 
 	public void updateProduct(Integer productID, ProductDto productDto, CategoryModel category, BrandModel brand);
+
+	public ProductModel getProductById(Integer productId) throws CustomException;
 
 	public List<ProductDto> getProductByCategory(Integer categoryId) throws CustomException;
 

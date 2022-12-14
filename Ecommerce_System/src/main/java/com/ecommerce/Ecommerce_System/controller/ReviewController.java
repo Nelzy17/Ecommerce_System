@@ -17,22 +17,22 @@ import com.ecommerce.Ecommerce_System.dto.product.ReviewDto;
 import com.ecommerce.Ecommerce_System.exceptions.CustomException;
 import com.ecommerce.Ecommerce_System.model.ProductModel;
 import com.ecommerce.Ecommerce_System.model.UserModel;
-import com.ecommerce.Ecommerce_System.service.ProductService;
-import com.ecommerce.Ecommerce_System.service.ReviewService;
-import com.ecommerce.Ecommerce_System.service.UserService;
+import com.ecommerce.Ecommerce_System.service.interfaces.IProductService;
+import com.ecommerce.Ecommerce_System.service.interfaces.IReviewService;
+import com.ecommerce.Ecommerce_System.service.interfaces.IUserService;
 
 @RestController
 @RequestMapping("/review")
 public class ReviewController {
 
 	@Autowired
-	private ReviewService reviewService;
+	private IReviewService reviewService;
 
 	@Autowired
-	private ProductService productService;
+	private IProductService productService;
 
 	@Autowired
-	private UserService userService;
+	private IUserService userService;
 
 	@PostMapping("/add")
 	public ResponseEntity<ApiResponse> addReview(@RequestBody ReviewDto review) throws CustomException {
