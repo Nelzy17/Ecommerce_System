@@ -50,26 +50,27 @@ public class ShoppingCartService implements IShoppingCartService {
 	}
 
 	public void deleteCartItem(int cartItemId, UserModel user) throws CustomException {
-		// TODO
-
-		// first check if cartItemId is valid else throw an CartItemNotExistException
-
 		Optional<ShoppingCartModel> optionalCart = shoppingCartRepo.findById(cartItemId);
 
 		if (!optionalCart.isPresent()) {
 			throw new CustomException("cartItemId not valid");
 		}
-
-		// next check if the cartItem belongs to the user else throw
-		// CartItemNotExistException exception
-
 		ShoppingCartModel cart = optionalCart.get();
 
 		if (cart.getUser() != user) {
 			throw new CustomException("cart item does not belong to user");
 		}
-
 		shoppingCartRepo.deleteById(cartItemId);
-		// delete the cart item
+	}
+
+	public List<ShoppingCartModel> getCheckoutItems(UserModel user) {
+		List<ShoppingCartModel> cartList = shoppingCartRepo.findAllByUserOrderByCreatedDateDesc(user);
+		return cartList;
+	}
+
+	public void emptyShoppingCart(List<ShoppingCartModel> shoppingCartModel, UserModel user) throws CustomException {
+		for (ShoppingCartModel sc : shoppingCartModel) {
+			deleteCartItem(sc.getId(), user);
+		}
 	}
 }
