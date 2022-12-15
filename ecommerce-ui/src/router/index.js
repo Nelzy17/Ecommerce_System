@@ -12,7 +12,8 @@ import ShowDetails from "../views/Product/ShowDetails";
 import Brands from "../views/Brands/Brands";
 import Cart from "../views/cart/Cart";
 import ProductByCat from "../views/Product/ProductByCat";
-import ProductByBrand from "../views/Product/ProductByBrand"
+import ProductByBrand from "../views/Product/ProductByBrand";
+import Analytics from "../views/Analytics";
 
 
 
@@ -84,6 +85,11 @@ const routes = [
     path : '/product/brand/:id',
     name : 'ProductByBrand',
     component: ProductByBrand
+  },
+  {
+    path: '/analytics',
+    name: 'Analytics',
+    component: Analytics
   },
 ];
 

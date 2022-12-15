@@ -1,14 +1,5 @@
 <template>
     <div class="container">
-      <!--    Logo Div-->
-      <div class="row">
-        <div class="col-12 text-center pt-3">
-          <router-link :to="{name : 'Home'}">
-            <img id="logo" src="../assets/icon.png" />
-          </router-link>
-        </div>
-      </div>
-      <!--    sign in form-->
       <div class="row">
         <div class="col-12 justify-content-center d-flex flex-row pt-5">
           <div id="signin-div" class="flex-item border">
@@ -22,9 +13,8 @@
                 <label>Password</label>
                 <input type="password" class="form-control" v-model="password" required>
               </div>
-              <small class="form-text text-muted">By continuing, you agree to Simplecoding's Conditions of Use and Privacy Notice.</small>
               <button type="submit" class="btn btn-primary mt-2 py-0">
-                Continue
+                Log-In
                 <!--  loading bar will appear when we are making the API call and saveing the token -->
                 <div v-if="loading" class="spinner-border spinner-border-sm" role="status">
                   <span class="sr-only">Loading...</span>
@@ -32,9 +22,9 @@
               </button>
             </form>
             <hr>
-            <small class="form-text text-muted pt-2 pl-4 text-center">New to Simplecoding?</small>
+            <small class="form-text text-muted pt-2 pl-4 text-center">New to Site?</small>
             <p class="text-center">
-              <router-link :to="{name: 'Signup'}" class="btn btn-dark text-center mx-auto px-5 py-1 mb-2">Create Your Simplecoding Account</router-link>
+              <router-link :to="{name: 'Signup'}" class="btn btn-dark text-center mx-auto px-5 py-1 mb-2">Create New Account</router-link>
             </p>
           </div>
         </div>

@@ -1,18 +1,9 @@
 <template>
     <div class="container">
-        <!--    Link to Home-->
-        <div class="row">
-            <div class="col-12 text-center pt-3">
-                <router-link :to="{name : 'Home'}">
-                    <img id="logo" src="../assets/icon.png" />
-                </router-link>
-            </div>
-        </div>
-        <!--   Sign up form-->
         <div class="row">
             <div class="col-12 justify-content-center d-flex flex-row pt-5">
                 <div id="signup-div" class="flex-item border">
-                    <h2 class="pt-4 pl-4">Create Account</h2>
+                    <h2 class="pt-4 pl-4">Create New Account</h2>
                     <form @submit="signup" class="pt-4 pl-4 pr-4">
                         <div class="form-group">
                             <label>Username</label>
