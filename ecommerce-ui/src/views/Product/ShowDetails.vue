@@ -88,11 +88,20 @@ import swal from 'sweetalert';
             },(error) =>{
                 // error handling
                 console.log(error)
-                swal({
-                    text: "Something wrong with add to cart",
-                    icon: "error",
-                    closeOnClickOutside: false,
-                });
+                if(this.userName==null){
+                        swal({
+                        text: "Please Login to add the product to cart",
+                        icon: "error",
+                        closeOnClickOutside: false,
+                    });
+                }
+                else{
+                    swal({
+                        text: "Something wrong with add to cart",
+                        icon: "error",
+                        closeOnClickOutside: false,
+                    });
+                }
             });
         },
         addReview(productId, rev){

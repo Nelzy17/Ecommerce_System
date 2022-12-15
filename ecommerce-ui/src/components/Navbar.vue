@@ -30,7 +30,7 @@
           </div>
         </li>
         <li class="nav-item">
-         <router-link class="text-light" :to="{name : 'Cart'}"><i class="fa fa-shopping-cart" style="font-size:36px"></i></router-link>
+         <router-link class="text-light" v-if="userId" :to="{name : 'Cart'}"><i class="fa fa-shopping-cart" style="font-size:36px"></i></router-link>
         </li>
       </ul>
     </nav>

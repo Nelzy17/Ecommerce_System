@@ -14,6 +14,7 @@ import Cart from "../views/cart/Cart";
 import ProductByCat from "../views/Product/ProductByCat";
 import ProductByBrand from "../views/Product/ProductByBrand";
 import Analytics from "../views/Analytics";
+import Checkout from "../views/Checkout/Checkout"
 
 
 
@@ -90,6 +91,11 @@ const routes = [
     path: '/analytics',
     name: 'Analytics',
     component: Analytics
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: Checkout
   },
 ];
 
