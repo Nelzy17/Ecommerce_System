@@ -49,7 +49,7 @@ public class OrderController {
 		List<ShoppingCartModel> checkoutItems = shoppingCartService.getCheckoutItems(user);
 		orderService.addToOrder(checkoutItems, user);
 		shoppingCartService.emptyShoppingCart(checkoutItems, user);
-		return new ResponseEntity<>(new ApiResponse(true, "Added to cart"), HttpStatus.CREATED);
+		return new ResponseEntity<>(new ApiResponse(true, "Added to Order History"), HttpStatus.CREATED);
 
 	}
 }

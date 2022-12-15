@@ -92,4 +92,10 @@ public class UserService implements IUserService {
 		}
 		return null;
 	}
+
+	public int getAllUsers() {
+		int totalUsers = (int) userRepo.count();
+		return totalUsers;
+
+	}
 }
