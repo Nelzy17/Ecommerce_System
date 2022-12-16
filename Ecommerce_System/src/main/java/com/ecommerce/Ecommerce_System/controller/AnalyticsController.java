@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.Ecommerce_System.dto.order.AnalyticsDto;
 import com.ecommerce.Ecommerce_System.exceptions.CustomException;
-import com.ecommerce.Ecommerce_System.service.OrderService;
-import com.ecommerce.Ecommerce_System.service.UserService;
+import com.ecommerce.Ecommerce_System.service.interfaces.IOrderService;
+import com.ecommerce.Ecommerce_System.service.interfaces.IUserService;
 
 @RestController
 @RequestMapping("/analytics")
 public class AnalyticsController {
 
 	@Autowired
-	private OrderService orderService;
+	private IOrderService orderService;
 
 	@Autowired
-	private UserService userService;
+	private IUserService userService;
 
 	@GetMapping("/")
 	public ResponseEntity<AnalyticsDto> getAnalysis() throws CustomException {

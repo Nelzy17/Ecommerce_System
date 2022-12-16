@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.Ecommerce_System.config.ApiResponse;
-import com.ecommerce.Ecommerce_System.dto.shoppingCart.AddToCartDto;
-import com.ecommerce.Ecommerce_System.dto.shoppingCart.CartDto;
+import com.ecommerce.Ecommerce_System.dto.shoppingCart.AddToShoppingCartDto;
+import com.ecommerce.Ecommerce_System.dto.shoppingCart.ShoppingCartDto;
 import com.ecommerce.Ecommerce_System.exceptions.CustomException;
 import com.ecommerce.Ecommerce_System.model.ProductModel;
 import com.ecommerce.Ecommerce_System.model.UserModel;
@@ -36,7 +36,7 @@ public class ShoppingCartController {
 	private IUserService userService;
 
 	@PostMapping("/add")
-	public ResponseEntity<ApiResponse> addToCart(@RequestBody AddToCartDto addToCartDto,
+	public ResponseEntity<ApiResponse> addToCart(@RequestBody AddToShoppingCartDto addToCartDto,
 			@RequestParam("UserName") String userName) throws CustomException {
 
 		UserModel user = userService.getUser(userName);
@@ -48,12 +48,12 @@ public class ShoppingCartController {
 	}
 
 	@GetMapping("/")
-	public ResponseEntity<CartDto> getCartItems(@RequestParam("UserName") String userName) throws CustomException {
+	public ResponseEntity<ShoppingCartDto> getCartItems(@RequestParam("UserName") String userName) throws CustomException {
 
 		UserModel user = userService.getUser(userName);
-		CartDto cartDto = shoppingCartService.listCartItems(user);
+		ShoppingCartDto cartDto = shoppingCartService.listCartItems(user);
 
-		return new ResponseEntity<CartDto>(cartDto, HttpStatus.OK);
+		return new ResponseEntity<ShoppingCartDto>(cartDto, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{cartItemId}")

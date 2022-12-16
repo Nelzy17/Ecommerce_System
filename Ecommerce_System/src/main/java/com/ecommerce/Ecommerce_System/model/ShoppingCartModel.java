@@ -44,43 +44,44 @@ public class ShoppingCartModel {
 		this.createdDate = new Date();
 	}
 
-	public Date getCreatedDate() {
-		return createdDate;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
 
 	public ProductModel getProduct() {
 		return product;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setProduct(ProductModel product) {
-		this.product = product;
-	}
-
 	public UserModel getUser() {
 		return user;
-	}
-
-	public void setUser(UserModel user) {
-		this.user = user;
 	}
 
 	public int getQuantity() {
 		return quantity;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public void setProduct(ProductModel product) {
+		this.product = product;
+	}
+
+	public void setUser(UserModel user) {
+		this.user = user;
+	}
+
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
 }

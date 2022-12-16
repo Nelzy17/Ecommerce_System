@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.Ecommerce_System.config.ApiResponse;
-import com.ecommerce.Ecommerce_System.dto.shoppingCart.CartDto;
+import com.ecommerce.Ecommerce_System.dto.shoppingCart.ShoppingCartDto;
 import com.ecommerce.Ecommerce_System.exceptions.CustomException;
 import com.ecommerce.Ecommerce_System.model.ShoppingCartModel;
 import com.ecommerce.Ecommerce_System.model.UserModel;
-import com.ecommerce.Ecommerce_System.service.OrderService;
+import com.ecommerce.Ecommerce_System.service.interfaces.IOrderService;
 import com.ecommerce.Ecommerce_System.service.interfaces.IShoppingCartService;
 import com.ecommerce.Ecommerce_System.service.interfaces.IUserService;
 
@@ -25,7 +25,7 @@ import com.ecommerce.Ecommerce_System.service.interfaces.IUserService;
 public class OrderController {
 
 	@Autowired
-	private OrderService orderService;
+	private IOrderService orderService;
 
 	@Autowired
 	private IShoppingCartService shoppingCartService;
@@ -34,12 +34,12 @@ public class OrderController {
 	private IUserService userService;
 
 	@GetMapping("/")
-	public ResponseEntity<CartDto> getCheckoutItems(@RequestParam("UserName") String userName) throws CustomException {
+	public ResponseEntity<ShoppingCartDto> getCheckoutItems(@RequestParam("UserName") String userName) throws CustomException {
 
 		UserModel user = userService.getUser(userName);
-		CartDto cartDto = shoppingCartService.listCartItems(user);
+		ShoppingCartDto cartDto = shoppingCartService.listCartItems(user);
 
-		return new ResponseEntity<CartDto>(cartDto, HttpStatus.OK);
+		return new ResponseEntity<ShoppingCartDto>(cartDto, HttpStatus.OK);
 	}
 
 	@PostMapping("/add")

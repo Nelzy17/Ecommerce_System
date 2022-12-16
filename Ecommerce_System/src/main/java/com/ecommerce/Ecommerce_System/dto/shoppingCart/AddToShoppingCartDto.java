@@ -2,18 +2,13 @@ package com.ecommerce.Ecommerce_System.dto.shoppingCart;
 
 import javax.validation.constraints.NotNull;
 
-public class AddToCartDto {
+public class AddToShoppingCartDto {
 
 	private Integer id;
 	private @NotNull Integer productId;
 	private @NotNull Integer quantity;
 
-	public AddToCartDto() {
-	}
-
-	@Override
-	public String toString() {
-		return "CartDto{" + "id=" + id + ", productId=" + productId + ", quantity=" + quantity + ",";
+	public AddToShoppingCartDto() {
 	}
 
 	public Integer getId() {
@@ -38,5 +33,10 @@ public class AddToCartDto {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	@Override
+	public String toString() {
+		return "ShoppingCartDto{" + "id=" + id + ", productId=" + productId + ", quantity=" + quantity + ",";
 	}
 }

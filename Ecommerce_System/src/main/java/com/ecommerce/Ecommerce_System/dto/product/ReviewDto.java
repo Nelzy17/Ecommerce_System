@@ -31,10 +31,6 @@ public class ReviewDto {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public Integer getProductId() {
 		return productId;
 	}
@@ -45,6 +41,10 @@ public class ReviewDto {
 
 	public String getReview() {
 		return review;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public void setProductId(Integer productId) {

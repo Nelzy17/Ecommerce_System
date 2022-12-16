@@ -15,12 +15,13 @@ import com.ecommerce.Ecommerce_System.model.ProductModel;
 import com.ecommerce.Ecommerce_System.model.ShoppingCartModel;
 import com.ecommerce.Ecommerce_System.model.UserModel;
 import com.ecommerce.Ecommerce_System.repository.OrderRepository;
+import com.ecommerce.Ecommerce_System.service.interfaces.IOrderService;
 
 @Service
-public class OrderService {
+public class OrderService implements IOrderService {
 
 	@Autowired
-	OrderRepository orderRepo;
+	private OrderRepository orderRepo;
 
 	public void addToOrder(List<ShoppingCartModel> shoppingCartModel, UserModel user) {
 
@@ -28,6 +29,22 @@ public class OrderService {
 			OrderModel order = new OrderModel(sc.getProduct(), sc.getQuantity(), user);
 			orderRepo.save(order);
 		}
+
+	}
+
+	public AnalyticsDto getAllAnalytics(Integer totalNumberofUsers) {
+		List<OrderModel> allOrders = orderRepo.findAll();
+		Integer totalNumberOfItemsSold = getNumOfItemsSold(allOrders);
+		Double totalRevenue = getTotalRevenue(allOrders);
+		ProductModel mostSellingProduct = getMostSoldProduct(allOrders);
+		CategoryModel mostSellingCategory = getMostSoldCategory(allOrders);
+		BrandModel mostSellingBrand = getMostSoldBrand(allOrders);
+
+		AnalyticsDto analyticsDto = new AnalyticsDto(totalNumberofUsers, totalNumberOfItemsSold, totalRevenue,
+				mostSellingProduct.getProductName(), mostSellingCategory.getCategoryName(),
+				mostSellingBrand.getBrandModel());
+
+		return analyticsDto;
 
 	}
 
@@ -114,21 +131,4 @@ public class OrderService {
 		}
 		return totalRevenue;
 	}
-
-	public AnalyticsDto getAllAnalytics(Integer totalNumberofUsers) {
-		List<OrderModel> allOrders = orderRepo.findAll();
-		Integer totalNumberOfItemsSold = getNumOfItemsSold(allOrders);
-		Double totalRevenue = getTotalRevenue(allOrders);
-		ProductModel mostSellingProduct = getMostSoldProduct(allOrders);
-		CategoryModel mostSellingCategory = getMostSoldCategory(allOrders);
-		BrandModel mostSellingBrand = getMostSoldBrand(allOrders);
-
-		AnalyticsDto analyticsDto = new AnalyticsDto(totalNumberofUsers, totalNumberOfItemsSold, totalRevenue,
-				mostSellingProduct.getProductName(), mostSellingCategory.getCategoryName(),
-				mostSellingBrand.getBrandModel());
-
-		return analyticsDto;
-
-	}
-
 }

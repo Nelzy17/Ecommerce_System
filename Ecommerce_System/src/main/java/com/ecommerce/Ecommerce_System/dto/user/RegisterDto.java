@@ -1,6 +1,6 @@
 package com.ecommerce.Ecommerce_System.dto.user;
 
-public class SignupDto {
+public class RegisterDto {
 	private String firstName;
 	private String lastName;
 	private String userName;

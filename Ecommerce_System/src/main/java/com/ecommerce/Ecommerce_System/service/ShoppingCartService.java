@@ -7,9 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.Ecommerce_System.dto.shoppingCart.AddToCartDto;
-import com.ecommerce.Ecommerce_System.dto.shoppingCart.CartDto;
-import com.ecommerce.Ecommerce_System.dto.shoppingCart.CartItemDto;
+import com.ecommerce.Ecommerce_System.dto.shoppingCart.AddToShoppingCartDto;
+import com.ecommerce.Ecommerce_System.dto.shoppingCart.ShoppingCartDto;
+import com.ecommerce.Ecommerce_System.dto.shoppingCart.ShoppingCartItemDto;
 import com.ecommerce.Ecommerce_System.exceptions.CustomException;
 import com.ecommerce.Ecommerce_System.model.ProductModel;
 import com.ecommerce.Ecommerce_System.model.ShoppingCartModel;
@@ -21,32 +21,32 @@ import com.ecommerce.Ecommerce_System.service.interfaces.IShoppingCartService;
 public class ShoppingCartService implements IShoppingCartService {
 
 	@Autowired
-	ShoppingCartRepository shoppingCartRepo;
+	private ShoppingCartRepository shoppingCartRepo;
 
-	public void addToCart(AddToCartDto addToCartDto, ProductModel product, UserModel user) {
+	public void addToCart(AddToShoppingCartDto addToCartDto, ProductModel product, UserModel user) {
 		ShoppingCartModel cart = new ShoppingCartModel(product, addToCartDto.getQuantity(), user);
 		shoppingCartRepo.save(cart);
 	}
 
-	public CartDto listCartItems(UserModel user) {
+	public ShoppingCartDto listCartItems(UserModel user) {
 		// first get all the cart items for user
 		List<ShoppingCartModel> cartList = shoppingCartRepo.findAllByUserOrderByCreatedDateDesc(user);
 
 		// convert cart to cartItemDto
-		List<CartItemDto> cartItems = new ArrayList<>();
+		List<ShoppingCartItemDto> cartItems = new ArrayList<>();
 		for (ShoppingCartModel cart : cartList) {
-			CartItemDto cartItemDto = new CartItemDto(cart);
+			ShoppingCartItemDto cartItemDto = new ShoppingCartItemDto(cart);
 			cartItems.add(cartItemDto);
 		}
 
 		// calculate the total price
 		double totalCost = 0;
-		for (CartItemDto cartItemDto : cartItems) {
+		for (ShoppingCartItemDto cartItemDto : cartItems) {
 			totalCost += cartItemDto.getProduct().getPrice() * cartItemDto.getQuantity();
 		}
 
 		// return cart DTO
-		return new CartDto(cartItems, totalCost);
+		return new ShoppingCartDto(cartItems, totalCost);
 	}
 
 	public void deleteCartItem(int cartItemId, UserModel user) throws CustomException {

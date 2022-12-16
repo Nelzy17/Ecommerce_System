@@ -11,10 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.Ecommerce_System.dto.user.SignInResponseDto;
-import com.ecommerce.Ecommerce_System.dto.user.SignUpResponseDto;
-import com.ecommerce.Ecommerce_System.dto.user.SigninDto;
-import com.ecommerce.Ecommerce_System.dto.user.SignupDto;
+import com.ecommerce.Ecommerce_System.dto.user.LoginDto;
+import com.ecommerce.Ecommerce_System.dto.user.LoginResponseDto;
+import com.ecommerce.Ecommerce_System.dto.user.RegisterDto;
+import com.ecommerce.Ecommerce_System.dto.user.RegisterResponseDto;
 import com.ecommerce.Ecommerce_System.exceptions.CustomException;
 import com.ecommerce.Ecommerce_System.model.UserModel;
 import com.ecommerce.Ecommerce_System.repository.UserRepository;
@@ -24,11 +24,11 @@ import com.ecommerce.Ecommerce_System.service.interfaces.IUserService;
 public class UserService implements IUserService {
 
 	@Autowired
-	UserRepository userRepo;
+	private UserRepository userRepo;
 
 	Logger logger = LoggerFactory.getLogger(UserService.class);
 
-	public SignUpResponseDto signUp(SignupDto signupDto) throws CustomException {
+	public RegisterResponseDto signUp(RegisterDto signupDto) throws CustomException {
 
 		UserModel userFlag = userRepo.findByUserName(signupDto.getUserName());
 		if (Objects.nonNull(userFlag)) {
@@ -46,26 +46,21 @@ public class UserService implements IUserService {
 		UserModel user = new UserModel(signupDto.getFirstName(), signupDto.getLastName(), signupDto.getUserName(),
 				encryptedPassword, signupDto.getAddress());
 		try {
-			// save the User
 			userRepo.save(user);
-			// success in creating
-			return new SignUpResponseDto("success", "user created successfully");
+			return new RegisterResponseDto("success", "user created successfully");
 		} catch (Exception e) {
-			// handle signup error
 			throw new CustomException(e.getMessage());
 		}
 	}
 
-	public SignInResponseDto signIn(SigninDto signInDto) throws CustomException {
+	public LoginResponseDto signIn(LoginDto signInDto) throws CustomException {
 
 		UserModel user = userRepo.findByUserName(signInDto.getUserName());
 		if (!Objects.nonNull(user)) {
 			throw new CustomException("User does not exist");
 		}
 		try {
-			// check if password is right
 			if (!user.getPassword().equals(hashPassword(signInDto.getPassword()))) {
-				// passwords do not match
 				throw new CustomException("Incorrect Password");
 			}
 		} catch (NoSuchAlgorithmException e) {
@@ -74,7 +69,7 @@ public class UserService implements IUserService {
 			throw new CustomException(e.getMessage());
 		}
 
-		return new SignInResponseDto("success", user.getId(), user.getUserName());
+		return new LoginResponseDto("success", user.getId(), user.getUserName());
 	}
 
 	private String hashPassword(String password) throws NoSuchAlgorithmException {

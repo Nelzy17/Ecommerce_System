@@ -44,17 +44,6 @@ public class ProductService implements IProductService {
 		productRepo.save(product);
 	}
 
-	private static ProductModel getProductHelper(ProductDto productDto, CategoryModel category, BrandModel brand) {
-		ProductModel product = new ProductModel();
-		product.setCategory(category);
-		product.setDescription(productDto.getDescription());
-		product.setImageURL(productDto.getImageURL());
-		product.setPrice(productDto.getPrice());
-		product.setProductName(productDto.getProductName());
-		product.setBrand(brand);
-		return product;
-	}
-
 	public ProductModel getProductById(Integer productId) throws CustomException {
 		Optional<ProductModel> optionalProduct = productRepo.findById(productId);
 		if (!optionalProduct.isPresent())
@@ -90,6 +79,17 @@ public class ProductService implements IProductService {
 		}
 
 		return productDtos;
+	}
+
+	private static ProductModel getProductHelper(ProductDto productDto, CategoryModel category, BrandModel brand) {
+		ProductModel product = new ProductModel();
+		product.setCategory(category);
+		product.setDescription(productDto.getDescription());
+		product.setImageURL(productDto.getImageURL());
+		product.setPrice(productDto.getPrice());
+		product.setProductName(productDto.getProductName());
+		product.setBrand(brand);
+		return product;
 	}
 
 }

@@ -1,6 +1,6 @@
 package com.ecommerce.Ecommerce_System.dto.user;
 
-public class SignUpResponseDto {
+public class RegisterResponseDto {
 
 	private String status;
 	private String message;
@@ -21,7 +21,7 @@ public class SignUpResponseDto {
 		this.message = message;
 	}
 
-	public SignUpResponseDto(String status, String message) {
+	public RegisterResponseDto(String status, String message) {
 		this.status = status;
 		this.message = message;
 	}

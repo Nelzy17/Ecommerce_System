@@ -1,12 +1,12 @@
 package com.ecommerce.Ecommerce_System.dto.user;
 
-public class SignInResponseDto {
+public class LoginResponseDto {
 
 	private String status;
 	private int userId;
 	private String userName;
 
-	public SignInResponseDto(String status, int userId, String userName) {
+	public LoginResponseDto(String status, int userId, String userName) {
 		this.status = status;
 		this.userId = userId;
 		this.userName = userName;
