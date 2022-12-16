@@ -29,12 +29,12 @@
     components : {ProductBox},
     props : [ "baseURL" ],
     methods: {
-    // fetch all the items in cart
+    
      listproductsbyCategory(){
       axios.get(`${this.baseURL}/product/category?categoryId=${this.categoryId}`).then((response) => {
         if(response.status==200){
           const result = response.data;
-          // store cartitems and total price in two variables
+          
           this.products = result;
         }
       },

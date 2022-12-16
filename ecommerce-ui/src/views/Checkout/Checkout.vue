@@ -96,12 +96,12 @@
          }
          return false;
        },
-      // fetch all the items in cart
+      
       listCheckoutItems(){
         axios.get(`${this.baseURL}checkout/?UserName=${this.userName}`).then((response) => {
           if(response.status==200){
             const result = response.data;
-            // store cartitems and total price in two variables
+            
             this.cartItems = result.cartItems;
             this.totalcost = result.totalCost
           }

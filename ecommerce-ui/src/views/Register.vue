@@ -47,7 +47,7 @@ const axios = require('axios')
 import swal from 'sweetalert';
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
-    name: 'Signup',
+    name: 'Register',
     props : ["baseURL"],
     data() {
         return {
@@ -62,10 +62,8 @@ export default {
     methods : {
         async signup(e) {
             e.preventDefault();
-            // if the password matches
+            
             if (this.password === this.passwordConfirm) {
-
-                // make the post body
                 const user = {
                     userName: this.userName,
                     firstName: this.firstName,
@@ -74,7 +72,7 @@ export default {
                     password: this.password
                 }
 
-                // call the API
+            
                 await axios({
                     method : 'post',
                     url : this.baseURL + "user/signup",
@@ -84,8 +82,8 @@ export default {
                     }
                 })
                 .then(() => {
-                    // redirect to home page
-                    this.$router.replace("/signin");
+                    
+                    this.$router.replace("/login");
                     swal({
                         text: "User signup successful. Please Login",
                         icon: "success",
@@ -96,7 +94,7 @@ export default {
                     console.log(err);
                 });
             } else {
-                // passwords are not matching
+                
                 swal({
                     text: "Error! Passwords are not matching",
                     icon: "error",

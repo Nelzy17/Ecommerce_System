@@ -2,36 +2,36 @@
     <div class="container">
       <div class="row">
         <div class="col-12 text-center">
-          <h3 class="pt-3">Shopping cart</h3>
+          <h3 class="pt-3">Shopping Cart</h3>
         </div>
       </div>
-      <!--    loop over all the cart items and display one by one-->
-      <div v-for="cartItem in cartItems" :key="cartItem.product.productId" class="row mt-2 pt-3 justify-content-around">
+      
+      <div v-for="shoppingCartItem in shoppingCartItems" :key="shoppingCartItem.product.productId" class="row mt-2 pt-3 justify-content-around">
         <div class="col-2"></div>
-        <!-- display image -->
+       
         <div class="col-md-3 embed-responsive embed-responsive-16by9">
-          <router-link :to="{ name: 'ShowDetails', params: { id : cartItem.product.productId } }">
-            <img v-bind:src="cartItem.product.imageURL" class="w-100 card-img-top embed-responsive-item">
+          <router-link :to="{ name: 'ShowDetails', params: { id : shoppingCartItem.product.productId } }">
+            <img v-bind:src="shoppingCartItem.product.imageURL" class="w-100 card-img-top embed-responsive-item">
           </router-link>
         </div>
-        <!-- display product name, quantity and price -->
+        
         <div class="col-md-5 px-3">
           <div class="card-block px-3">
-            <h6 class="card-title"><router-link :to="{ name: 'ShowDetails', params: { id : cartItem.product.productId } }">{{cartItem.product.productName}} </router-link></h6>
-            <p id="item-price" class="mb-0 font-weight-bold">$ {{cartItem.product.price}} per unit</p>
+            <h6 class="card-title"><router-link :to="{ name: 'ShowDetails', params: { id : shoppingCartItem.product.productId } }">{{shoppingCartItem.product.productName}} </router-link></h6>
+            <p id="item-price" class="mb-0 font-weight-bold">$ {{shoppingCartItem.product.price}} per unit</p>
             <p id="item-quantity" class="mb-0">
               Quantity :
-              <input size="1" class="p-0 h-25 border-bottom border-top-0 border-left-0 border-right-0" v-model="cartItem.quantity" /></p>
-            <p id="item-total-price" class="mb-0">Total : <span class="font-weight-bold"> $ {{cartItem.product.price*cartItem.quantity}}</span></p>
-            <!--       1. make a function deleteItem and pass cartitem.id and trigger it on click  -->
-<br><a href="#" @click="deleteItem(cartItem.id)">Remove From Cart</a>
+              <input size="1" class="p-0 h-25 border-bottom border-top-0 border-left-0 border-right-0" v-model="shoppingCartItem.quantity" /></p>
+            <p id="item-total-price" class="mb-0">Total : <span class="font-weight-bold"> $ {{shoppingCartItem.product.price*shoppingCartItem.quantity}}</span></p>
+            
+<br><a href="#" @click="deleteItem(shoppingCartItem.id)">Remove From Shopping Cart</a>
         </div>
         </div>
         <div class="col-2"></div>
         <div class="col-12"><hr></div>
       </div>
   
-      <!-- display total price -->
+      
       <div class="total-cost pt-2 text-right">
         <h5>Total : $ {{totalcost}}</h5>
         <router-link :disabled="isDisabled()" type="button" class="btn btn-primary confirm" :to="{name : 'Checkout'}" >Proceed To Pay</router-link>
@@ -44,28 +44,27 @@
   export default {
     data() {
       return {
-        cartItems: [],
+        shoppingCartItems: [],
         userName: null,
         totalcost:0
       }
     },
     // eslint-disable-next-line vue/multi-word-component-names
-    name: 'Cart',
+    name: 'ShoppingCart',
     props: ["baseURL"],
     methods: {
        isDisabled(){
-         if(this.cartItems.length === 0){
+         if(this.shoppingCartItems.length === 0){
            return true;
          }
          return false;
        },
-      // fetch all the items in cart
+      
       listCartItems(){
         axios.get(`${this.baseURL}shoppingcart/?UserName=${this.userName}`).then((response) => {
           if(response.status==200){
             const result = response.data;
-            // store cartitems and total price in two variables
-            this.cartItems = result.cartItems;
+            this.shoppingCartItems = result.cartItems;
             this.totalcost = result.totalCost
           }
         },
@@ -73,13 +72,11 @@
           console.log(error)
         });
       },
-      //delete the cart item
+      
     deleteItem(itemId) {
-       // 2. first delete the item by calling delete api
       axios.delete(`${this.baseURL}shoppingcart/delete/${itemId}/?userName=${this.userName}`)
         .then((response)=>{
           if(response.status == 200){
-            // 3. refresh the data by calling listCartItems
             this.listCartItems();
           }
         },(error)=>{

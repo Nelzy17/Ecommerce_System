@@ -1,16 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/HomeView.vue'
-import AddCategory from "../views/Category/AddCategory";
 import Category from "../views/Category/Category";
-import EditCategory from "../views/Category/EditCategory";
 import AddProduct from "../views/Product/AddProduct";
 import Product from "../views/Product/Product";
 
-import Signup from "../views/Signup";
-import Signin from "../views/Signin";
+import Register from "../views/Register";
+import Login from "../views/Login";
 import ShowDetails from "../views/Product/ShowDetails";
 import Brands from "../views/Brands/Brands";
-import Cart from "../views/cart/Cart";
+import ShoppingCart from "../views/ShoppingCart/ShoppingCart";
 import ProductByCat from "../views/Product/ProductByCat";
 import ProductByBrand from "../views/Product/ProductByBrand";
 import Analytics from "../views/Analytics";
@@ -27,19 +25,9 @@ const routes = [
     component: Home,
   },
   {
-    path: "/admin/category/add",
-    name: "AddCategory",
-    component: AddCategory,
-  },
-  {
     path: "/admin/category",
     name: "AdminCategory",
     component: Category,
-  },
-  {
-    path: "/admin/category/:id",
-    name: "EditCategory",
-    component: EditCategory,
   },
   {
     path: "/admin/product/add",
@@ -52,14 +40,14 @@ const routes = [
     component: Product,
   },
   {
-    path: '/signup',
-    name: 'Signup',
-    component: Signup
+    path: '/register',
+    name: 'Register',
+    component: Register
   },
   {
-    path: '/signin',
-    name: 'Signin',
-    component: Signin
+    path: '/login',
+    name: 'Login',
+    component: Login
   },
   {
     path : '/product/show/:id',
@@ -72,9 +60,9 @@ const routes = [
     component: Brands
   },
   {
-    path : '/admin/cart',
-    name : 'Cart',
-    component: Cart
+    path : '/admin/shoppingcart',
+    name : 'ShoppingCart',
+    component: ShoppingCart
   },
   {
 

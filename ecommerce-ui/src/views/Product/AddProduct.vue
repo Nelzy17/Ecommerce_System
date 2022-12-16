@@ -20,10 +20,6 @@
               <label>Name</label>
               <input type="text" class="form-control" v-model="productName" required>
             </div>
-            <!-- <div class="form-group">
-              <label>Brand</label>
-              <input type="text" class="form-control" v-model="name" required>
-            </div> -->
 
             <div class="form-group">
               <label>Brand</label>

@@ -4,7 +4,7 @@
         <div class="col-12 justify-content-center d-flex flex-row pt-5">
           <div id="signin-div" class="flex-item border">
             <h2 class="pt-4 pl-4">Log-In</h2>
-            <form @submit="signin" class="pt-4 pl-4 pr-4">
+            <form @submit="login" class="pt-4 pl-4 pr-4">
               <div class="form-group">
                 <label>Username</label>
                 <input type="userName" class="form-control" v-model="userName" required>
@@ -15,7 +15,6 @@
               </div>
               <button type="submit" class="btn btn-primary mt-2 py-0">
                 Log-In
-                <!--  loading bar will appear when we are making the API call and saveing the token -->
                 <div v-if="loading" class="spinner-border spinner-border-sm" role="status">
                   <span class="sr-only">Loading...</span>
                 </div>
@@ -24,7 +23,7 @@
             <hr>
             <small class="form-text text-muted pt-2 pl-4 text-center">New to Site?</small>
             <p class="text-center">
-              <router-link :to="{name: 'Signup'}" class="btn btn-dark text-center mx-auto px-5 py-1 mb-2">Create New Account</router-link>
+              <router-link :to="{name: 'Register'}" class="btn btn-dark text-center mx-auto px-5 py-1 mb-2">Create New Account</router-link>
             </p>
           </div>
         </div>
@@ -37,7 +36,7 @@ const axios = require('axios')
 import swal from 'sweetalert';
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: 'Signin',
+  name: 'Login',
   props : [ "baseURL"],
   data() {
     return {
@@ -47,17 +46,15 @@ export default {
     }
   },
   methods : {
-    async signin(e) {
+    async login(e) {
       e.preventDefault();
-      // set loading to true
+    
       this.loading = true;
-
-      // request body
       const user = {
         userName: this.userName,
         password: this.password
       }
-      // api call
+  
       await axios({
         method: 'post',
         url: this.baseURL + "user/signin",
@@ -67,10 +64,10 @@ export default {
         }
       })
       .then(res => {
-        // login successful, we will get token in res.data object
+        
         localStorage.setItem('userId', res.data.userId);
         localStorage.setItem('userName', res.data.userName);
-        // // redirect to home page
+       
         this.$router.push({name:'Home'});
         swal({
           text: "Login successful. Please continue",
@@ -78,7 +75,7 @@ export default {
         });
       })
       .catch(err => {
-        // error handling and showing sweet alert
+        
         swal({
           text: "Unable to Log you in!",
           icon: "error",
@@ -87,7 +84,7 @@ export default {
         console.log(err);
       })
       .finally(() => {
-        // set loading false
+        
         this.loading = false;
       })
     }

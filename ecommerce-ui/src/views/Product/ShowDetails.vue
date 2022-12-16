@@ -1,19 +1,14 @@
 <template>
     <div class="container">
         <div class="row pt-5">
-            <!--            Leave some empty space in left-->
             <div class="col-md-1">
             </div>
-            <!--                Display the image in left side-->
             <div class="col-md-4 col-12">
                 <img :src="product.imageURL" :alt="product.productName" class="img-fluid">
             </div>
-            <!-- Display product name category name and product description-->
             <div class="col-md-6 col-12 pt-3 pt-md-0">
                 <h4>{{product.productName}}</h4>
-
                 <h6 class="category font-italic" id="bottom-space">{{category.categoryName}}</h6>
-
                 <p id="bottom-space"><span class="font-weight-bold">Description: -</span> <br>{{product.description}}</p>
 
                 <div class="d-flex flex-row justify-content-between">
@@ -23,7 +18,7 @@
                         </div>
                         <input class="form-control" type="number" v-model="quantity"/>
                     </div>
-                 <!-- Add to cart button-->
+                 
                  <button type="button" id="add-to-cart-button" class="btn" @click="addToCart(this.id)">
                         Add to Cart
                         <ion-icon name="cart-outline" v-pre></ion-icon>
@@ -70,14 +65,14 @@ import swal from 'sweetalert';
           }
       },
       props : ["baseURL","products", "categories"],
-      methods:{ // add to cart function
+      methods:{ 
         addToCart(productId){
-            // post productId and quantity
+            
             axios.post(`${this.baseURL}shoppingcart/add?UserName=${this.userName}`,{
                 productId : productId,
                 quantity : this.quantity
             }).then((response) => {
-                // success
+                
                 if(response.status==201){
                     swal({
                         text: "Product Added to the cart!",
@@ -86,7 +81,7 @@ import swal from 'sweetalert';
                     });
                 }
             },(error) =>{
-                // error handling
+                
                 console.log(error)
                 if(this.userName==null){
                         swal({
@@ -105,13 +100,13 @@ import swal from 'sweetalert';
             });
         },
         addReview(productId, rev){
-            // post productId and quantity
+            
             axios.post(`${this.baseURL}review/add`,{
                 productId : productId,
                 review : rev,
                 userName: this.userName
             }).then((response) => {
-                // success
+                
                 if(response.status==201){
                     swal({
                         text: "Review Added!",
@@ -122,7 +117,7 @@ import swal from 'sweetalert';
                     this.content = null
                 }
             },(error) =>{
-                // error handling
+                
                 console.log(error)
                 swal({
                     text: "Something wrong with add a Review",
@@ -135,7 +130,7 @@ import swal from 'sweetalert';
             axios.get(`${this.baseURL}/review/?productId=${productId}`).then((response) => {
                 if(response.status==200){
                 const result = response.data;
-                // store cartitems and total price in two variables
+                
                 this.reviews = result;
                 }
             },
@@ -160,7 +155,6 @@ import swal from 'sweetalert';
         font-weight: 400;
     }
 
-    /* Chrome, Safari, Edge, Opera */
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;

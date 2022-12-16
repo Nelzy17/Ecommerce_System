@@ -5,31 +5,24 @@
       </div>
       <div class="card-body">
         <router-link :to="{ name: 'ShowDetails', params: { id : product.productId } }"><h5 class="card-title">{{product.productName}}</h5></router-link>
-
-        <!-- <h5 class="card-title">{{product.productName}}</h5> -->
         <p class="card-text"><sup>$</sup>{{product.price}}</p>
-        <!-- <p class="card-text font-italic">{{product.description.substring(0,65)}}...</p> -->
       </div>
     </div>
-  </template>
+</template>
   
-  <script>
+<script>
   export default {
       name : "ProductBox",
       props : ["product"],
       methods : {
       }
   }
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   
   .embed-responsive .card-img-top {
     object-fit: cover;
-  }
-  
-  a {
-    text-decoration: none;
   }
   
   .card-title {
@@ -45,12 +38,6 @@
   .card-text {
     font-size: 1.2rem;
   }
-  
-  #edit-product {
-    float: right;
-  }
-  
-  
-  
-  </style>
+
+</style>
   

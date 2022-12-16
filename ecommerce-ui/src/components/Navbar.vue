@@ -23,14 +23,14 @@
             {{userName}}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <router-link class="dropdown-item" v-if="!userId" :to="{name: 'Signin'}">Log In</router-link>
-              <router-link class="dropdown-item" v-if="!userId" :to="{name: 'Signup'}">Register</router-link>
+              <router-link class="dropdown-item" v-if="!userId" :to="{name: 'Login'}">Log In</router-link>
+              <router-link class="dropdown-item" v-if="!userId" :to="{name: 'Register'}">Register</router-link>
               <router-link class="dropdown-item" v-if="admin" :to="{name: 'Analytics'}">Analytics</router-link>
               <a class="dropdown-item" v-if="userId" href="#" @click="signout">Sign Out</a>
           </div>
         </li>
         <li class="nav-item">
-         <router-link class="text-light" v-if="userId" :to="{name : 'Cart'}"><i class="fa fa-shopping-cart" style="font-size:36px"></i></router-link>
+         <router-link class="text-light" v-if="userId" :to="{name : 'ShoppingCart'}"><i class="fa fa-shopping-cart" style="font-size:36px"></i></router-link>
         </li>
       </ul>
     </nav>
